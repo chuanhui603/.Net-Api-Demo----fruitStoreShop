@@ -1,0 +1,21 @@
+# 忽略 Obsidian 的工作區配置文件
+/水水水果Note/.obsidian/workspace.json
+
+# 忽略 Visual Studio 文件夾
+/.vs
+
+# 忽略編譯輸出文件夾
+/obj
+/bin
+/.vscode
+# 忽略日誌文件夾
+/logs
+
+# 忽略特定的 Markdown 文件
+commit-message-instructions.md
+
+# 忽略 node_modules 文件夾
+/node_modules
+
+# 忽略環境配置文件
+.env
