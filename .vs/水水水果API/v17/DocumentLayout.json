@@ -1,0 +1,631 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\models\\orderdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:models\\orderdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\interfaces\\iorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:interfaces\\iorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\interfaces\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:interfaces\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\interfaces\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:interfaces\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\interfaces\\imemberservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:interfaces\\imemberservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\interfaces\\icouponrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:interfaces\\icouponrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\interfaces\\icouponservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:interfaces\\icouponservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\services\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:services\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\controllers\\couponcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:controllers\\couponcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\services\\memberservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:services\\memberservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\repositories\\memberrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:repositories\\memberrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\repositories\\couponrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:repositories\\couponrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\models\\coupon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:models\\coupon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\extensionmethod\\configurationmodelserviceextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:extensionmethod\\configurationmodelserviceextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\extensionmethod\\dependencyinjectionextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:extensionmethod\\dependencyinjectionextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\extensionmethod\\logsettingextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:extensionmethod\\logsettingextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\models\\configurationmodel\\redissettingmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:models\\configurationmodel\\redissettingmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\models\\configurationmodel\\jwtmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:models\\configurationmodel\\jwtmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\models\\configurationmodel\\mailmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:models\\configurationmodel\\mailmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\globalusing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:globalusing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\extensionmethod\\dapperhelperextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:extensionmethod\\dapperhelperextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\services\\couponservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:services\\couponservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\controllers\\membercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:controllers\\membercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\controllers\\recipientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:controllers\\recipientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|c:\\users\\qazxc\\onedrive\\\u684C\u9762\\fruitstorewebsite\\\u6C34\u6C34\u6C34\u679Capi\\\u6C34\u6C34\u6C34\u679Capi(http).http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{B662A0C1-DC80-4089-895B-735A13B59CBB}|\u6C34\u6C34\u6C34\u679CAPI.csproj|solutionrelative:\u6C34\u6C34\u6C34\u679Capi(http).http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "Models\\Product.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Models\\Product.cs",
+              "RelativeToolTip": "Models\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T15:25:27.18Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Models\\Order.cs",
+              "RelativeDocumentMoniker": "Models\\Order.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Models\\Order.cs",
+              "RelativeToolTip": "Models\\Order.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAABDwBoAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T15:22:14.909Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OrderDetail.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Models\\OrderDetail.cs",
+              "RelativeDocumentMoniker": "Models\\OrderDetail.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Models\\OrderDetail.cs",
+              "RelativeToolTip": "Models\\OrderDetail.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T15:17:44.907Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IProductRepository.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Interfaces\\IProductRepository.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IProductRepository.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Interfaces\\IProductRepository.cs",
+              "RelativeToolTip": "Interfaces\\IProductRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T15:15:42.342Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IMemberService.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Interfaces\\IMemberService.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IMemberService.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Interfaces\\IMemberService.cs",
+              "RelativeToolTip": "Interfaces\\IMemberService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T15:15:33.362Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ICouponRepository.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Interfaces\\ICouponRepository.cs",
+              "RelativeDocumentMoniker": "Interfaces\\ICouponRepository.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Interfaces\\ICouponRepository.cs",
+              "RelativeToolTip": "Interfaces\\ICouponRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T15:15:29.607Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ICouponService.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Interfaces\\ICouponService.cs",
+              "RelativeDocumentMoniker": "Interfaces\\ICouponService.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Interfaces\\ICouponService.cs",
+              "RelativeToolTip": "Interfaces\\ICouponService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T15:15:28.733Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IOrderRepository.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Interfaces\\IOrderRepository.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IOrderRepository.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Interfaces\\IOrderRepository.cs",
+              "RelativeToolTip": "Interfaces\\IOrderRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T15:14:22.503Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IOrderService.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Interfaces\\IOrderService.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IOrderService.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Interfaces\\IOrderService.cs",
+              "RelativeToolTip": "Interfaces\\IOrderService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T15:12:54.47Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "OrderService.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Services\\OrderService.cs",
+              "RelativeDocumentMoniker": "Services\\OrderService.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Services\\OrderService.cs",
+              "RelativeToolTip": "Services\\OrderService.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAkwFIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T15:11:55.955Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "MemberService.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Services\\MemberService.cs",
+              "RelativeDocumentMoniker": "Services\\MemberService.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Services\\MemberService.cs",
+              "RelativeToolTip": "Services\\MemberService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T15:11:55.34Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "MemberRepository.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Repositories\\MemberRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\MemberRepository.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Repositories\\MemberRepository.cs",
+              "RelativeToolTip": "Repositories\\MemberRepository.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAA+wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T15:11:42.03Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Coupon.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Models\\Coupon.cs",
+              "RelativeDocumentMoniker": "Models\\Coupon.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Models\\Coupon.cs",
+              "RelativeToolTip": "Models\\Coupon.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T15:11:38.226Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "JWTModel.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Models\\ConfigurationModel\\JWTModel.cs",
+              "RelativeDocumentMoniker": "Models\\ConfigurationModel\\JWTModel.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Models\\ConfigurationModel\\JWTModel.cs",
+              "RelativeToolTip": "Models\\ConfigurationModel\\JWTModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T13:56:46.799Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "RedisSettingModel.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Models\\ConfigurationModel\\RedisSettingModel.cs",
+              "RelativeDocumentMoniker": "Models\\ConfigurationModel\\RedisSettingModel.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Models\\ConfigurationModel\\RedisSettingModel.cs",
+              "RelativeToolTip": "Models\\ConfigurationModel\\RedisSettingModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T13:56:39.765Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-02-25T15:30:17.374Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ConfigurationModelServiceExtension.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\ExtensionMethod\\ConfigurationModelServiceExtension.cs",
+              "RelativeDocumentMoniker": "ExtensionMethod\\ConfigurationModelServiceExtension.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\ExtensionMethod\\ConfigurationModelServiceExtension.cs",
+              "RelativeToolTip": "ExtensionMethod\\ConfigurationModelServiceExtension.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T07:26:28.48Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "LogSettingExtension.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\ExtensionMethod\\LogSettingExtension.cs",
+              "RelativeDocumentMoniker": "ExtensionMethod\\LogSettingExtension.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\ExtensionMethod\\LogSettingExtension.cs",
+              "RelativeToolTip": "ExtensionMethod\\LogSettingExtension.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T07:30:14.792Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Controllers\\OrdersController.cs",
+              "RelativeDocumentMoniker": "Controllers\\OrdersController.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Controllers\\OrdersController.cs",
+              "RelativeToolTip": "Controllers\\OrdersController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA8wB0AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-07T07:49:45.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CouponController.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Controllers\\CouponController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CouponController.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Controllers\\CouponController.cs",
+              "RelativeToolTip": "Controllers\\CouponController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAA+wCIAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-07T07:49:46.168Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "MailModel.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Models\\ConfigurationModel\\MailModel.cs",
+              "RelativeDocumentMoniker": "Models\\ConfigurationModel\\MailModel.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Models\\ConfigurationModel\\MailModel.cs",
+              "RelativeToolTip": "Models\\ConfigurationModel\\MailModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T13:56:49.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAAADQAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T15:28:50.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "globalusing.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\globalusing.cs",
+              "RelativeDocumentMoniker": "globalusing.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\globalusing.cs",
+              "RelativeToolTip": "globalusing.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T15:30:13.049Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "DependencyInjectionExtension.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\ExtensionMethod\\DependencyInjectionExtension.cs",
+              "RelativeDocumentMoniker": "ExtensionMethod\\DependencyInjectionExtension.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\ExtensionMethod\\DependencyInjectionExtension.cs",
+              "RelativeToolTip": "ExtensionMethod\\DependencyInjectionExtension.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAA+wBwAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-07T08:39:25.37Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CouponRepository.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Repositories\\CouponRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\CouponRepository.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Repositories\\CouponRepository.cs",
+              "RelativeToolTip": "Repositories\\CouponRepository.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAowCYAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-07T07:50:27.712Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "CouponService.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Services\\CouponService.cs",
+              "RelativeDocumentMoniker": "Services\\CouponService.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Services\\CouponService.cs",
+              "RelativeToolTip": "Services\\CouponService.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAIA6wGYAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T07:12:23.1Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-07T07:49:03.592Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "Services\\AuthService.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Services\\AuthService.cs",
+              "RelativeToolTip": "Services\\AuthService.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAywDQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T07:12:47.175Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "MemberController.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Controllers\\MemberController.cs",
+              "RelativeDocumentMoniker": "Controllers\\MemberController.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Controllers\\MemberController.cs",
+              "RelativeToolTip": "Controllers\\MemberController.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-07T07:49:45.789Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "DapperHelperExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\ExtensionMethod\\DapperHelperExtensions.cs",
+              "RelativeDocumentMoniker": "ExtensionMethod\\DapperHelperExtensions.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\ExtensionMethod\\DapperHelperExtensions.cs",
+              "RelativeToolTip": "ExtensionMethod\\DapperHelperExtensions.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAowCsAAAB5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-07T07:50:36.214Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "RecipientController.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Controllers\\RecipientController.cs",
+              "RelativeDocumentMoniker": "Controllers\\RecipientController.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Controllers\\RecipientController.cs",
+              "RelativeToolTip": "Controllers\\RecipientController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-07T07:49:05.865Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProductController.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "Controllers\\ProductController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-07T07:49:44.541Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "PayMentController.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Controllers\\PayMentController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PayMentController.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Controllers\\PayMentController.cs",
+              "RelativeToolTip": "Controllers\\PayMentController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-07T07:49:44.975Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "TestController.cs",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Controllers\\TestController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TestController.cs",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\Controllers\\TestController.cs",
+              "RelativeToolTip": "Controllers\\TestController.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAA6wCgAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T15:08:03.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "\u6C34\u6C34\u6C34\u679CAPI(http).http",
+              "DocumentMoniker": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\\u6C34\u6C34\u6C34\u679CAPI(http).http",
+              "RelativeDocumentMoniker": "\u6C34\u6C34\u6C34\u679CAPI(http).http",
+              "ToolTip": "C:\\Users\\qazxc\\OneDrive\\\u684C\u9762\\FruitStoreWebsite\\\u6C34\u6C34\u6C34\u679CAPI\\\u6C34\u6C34\u6C34\u679CAPI(http).http",
+              "RelativeToolTip": "\u6C34\u6C34\u6C34\u679CAPI(http).http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-02-18T07:02:46.219Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
