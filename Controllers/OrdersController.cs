@@ -3,7 +3,7 @@
 namespace 水水水果.Controllers
 {
     [Route("api/[controller]")]
-     [ServiceFilter(typeof(LogoutActionFilter))]
+    [ServiceFilter(typeof(LogoutActionFilter))]
     [ApiController]
     [Authorize]
     public class OrdersController : ControllerBase
@@ -25,20 +25,20 @@ namespace 水水水果.Controllers
 
         // GET api/<OrdersController>/5
         [HttpGet("page={page}/top={pageSize}")]
-        public IActionResult GetById(Guid id)
+        public IActionResult GetByPage(int page, int pageSize)
         {
-            var order = _orderService.GetOrdersByPage(id);
-            if (order == null)
+            var orders = _orderService.GetOrdersByPage(page, pageSize);
+            if (orders.Count() == 0)
             {
                 return NotFound();
             }
-            return Ok(order);
+            return Ok(orders.ToList());
         }
 
 
         // GET api/<OrdersController>/5
         [HttpGet("{id}")]
-        public IActionResult GetByPage(int page,int pageSize)
+        public IActionResult GetById(Guid id)
         {
             var order = _orderService.GetOrderById(id);
             if (order == null)
