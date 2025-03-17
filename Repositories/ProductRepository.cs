@@ -14,7 +14,10 @@ namespace 水水水果API.Repositories
 
             return _dbConnection.GetAll<Product>(_tableName);
         }
-
+        public IEnumerable<Product> GetProductsByPage(int page, int pageSize)
+        {
+           return _dbConnection.GetByPage<Product>(_tableName, page, pageSize);
+        }
         public Product GetProductById(Guid id)
         {
             return _dbConnection.GetById<Product>(_tableName, id);
@@ -34,5 +37,7 @@ namespace 水水水果API.Repositories
         {
             _dbConnection.Delete(_tableName, id);
         }
+
+
     }
 }

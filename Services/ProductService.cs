@@ -25,6 +25,22 @@
             };
         }
 
+        public IEnumerable<ProductDTO> GetProductsByPage(int page, int pageSize)
+        {
+            return _productRepository.GetProductsByPage(page, pageSize).Select(product => new ProductDTO
+            {
+                Id = Guid.NewGuid(),
+                Name = product.Name,
+                Price = product.Price,
+                Category = product.Category,
+                ImageUrl = product.ImageUrl,
+                Origin = product.Origin,
+                Weight = product.Weight,
+                RecommendedStorage = product.RecommendedStorageMethod,
+                Description = product.Description,
+            });
+        }
+
         public IEnumerable<ProductDTO> GetProducts()
         {
             return _productRepository.GetProducts().Select(product => new ProductDTO
@@ -74,5 +90,7 @@
         {
             _productRepository.DeleteProduct(id);
         }
+
+
     }
 }

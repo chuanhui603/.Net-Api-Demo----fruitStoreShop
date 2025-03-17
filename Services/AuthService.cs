@@ -27,7 +27,7 @@ namespace 水水水果API.Services
             return new LoginResponseDTO
             {
                 Token = token,
-                Expiration = DateTime.Now.AddMinutes(10)
+                Expiration = DateTime.Now.AddMinutes(60)
             };
         }
 

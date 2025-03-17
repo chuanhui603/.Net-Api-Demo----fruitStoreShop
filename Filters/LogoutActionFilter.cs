@@ -10,10 +10,9 @@ namespace 水水水果API.Filters
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             var user = _httpcontext.HttpContext.User;
-
             if (user != null)
             {
-                var memberIdClaim = user.Claims.FirstOrDefault(c => c.Type == "MemberId");
+                var memberIdClaim = user.Claims.FirstOrDefault(c => c.Type == "Email");
                 if (memberIdClaim != null)
                 {
                     var db = _redis.GetDatabase();

@@ -13,6 +13,10 @@
         {
             return _dbConnection.GetAll<Member>(_tableName);
         }
+        public IEnumerable<Member> GetMembersByPage(int page, int pageSize)
+        {
+            return _dbConnection.GetByPage<Member>(_tableName, page, pageSize);
+        }
 
         public Member GetMemberById(Guid id)
         {
@@ -37,7 +41,9 @@
         public Member GetMemberByLogin(MemberDTO member)
         {
             var sql = "SELECT login_role,email,id FROM member WHERE email = @Email";
-            return _dbConnection.QuerySingle<Member>(sql, new { member.Email, member.Password,member.Id });
+            return _dbConnection.QuerySingle<Member>(sql, new { member.Email, member.Password, member.Id });
         }
+
+
     }
 }

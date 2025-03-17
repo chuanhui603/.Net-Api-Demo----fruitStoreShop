@@ -4,8 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using MySql.Data.MySqlClient;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using StackExchange.Redis;
-using System.Configuration;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,24 +29,18 @@ try
            {
                // 透過這項宣告，就可以從 "sub" 取值並設定給 User.Identity.Name
 
-               NameClaimType = JwtRegisteredClaimNames.Sub, // 使用 "sub" 作為 NameClaimType
-                                                            // 透過這項宣告，就可以從 "roles" 取值，並可讓 [Authorize] 判斷角色
-               RoleClaimType = ClaimTypes.Role, // 使用 "roles" 作為 RoleClaimType
-
+               NameClaimType = JwtRegisteredClaimNames.Sub,            
+               RoleClaimType = ClaimTypes.Role, 
                // 一般都會驗證 Issuer
                ValidateIssuer = true,
                ValidIssuer = builder.Configuration.GetValue<string>("JWTSetting:JWTIssuer"),
 
-               // 通常不太需要驗證 Audience
+             
                ValidateAudience = false,
-               //ValidAudience = "JwtAuthDemo", // 不驗證就不需要填寫
-
+               //ValidAudience = "JwtAuthDemo", 
                // 一般都會驗證 Token 的有效期間
                ValidateLifetime = true,
-
-               // 如果 Token 中包含 key 才需要驗證，一般都只有簽章
                ValidateIssuerSigningKey = false,
-
                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetValue<string>("JWTSetting:JWTSignKey")))
            };
        });

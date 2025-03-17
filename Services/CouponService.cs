@@ -85,7 +85,7 @@
             if (result == null) return;
             _logger.LogInformation("result: {0}", result);
             var user = _httpcontext.HttpContext.User;
-            var memberIdClaim = user.Claims.FirstOrDefault(c => c.Type == "MemberId");
+            var memberIdClaim = user.Claims.FirstOrDefault(c => c.Type == "Email");
             _logger.LogInformation("memberIdClaim: {0}", memberIdClaim);
             _couponRepository.RegiserCoupon(new MemberCoupon
             {

@@ -3,6 +3,7 @@
     public interface IMemberRepository
     {
         IEnumerable<Member> GetMembers();
+        IEnumerable<Member> GetMembersByPage(int page, int pageSize);
         Member GetMemberById(Guid id);
         Member GetMemberByLogin(MemberDTO member);
         void CreateMember(Member member);

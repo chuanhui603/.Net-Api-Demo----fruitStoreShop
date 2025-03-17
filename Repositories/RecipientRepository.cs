@@ -10,6 +10,10 @@
         {
             return _dbConnection.GetAll<Recipient>(_tableName);
         }
+        public IEnumerable<Recipient> GetRecipientsByPage(int page, int pageSize)
+        {
+            return _dbConnection.GetByPage<Recipient>(_tableName, page, pageSize);
+        }
 
         public Recipient GetRecipientById(Guid id)
         {
@@ -30,5 +34,7 @@
         {
             _dbConnection.Delete(_tableName, id);
         }
+
+
     }
 }

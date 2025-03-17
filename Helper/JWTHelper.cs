@@ -43,7 +43,7 @@ namespace 水水水果API.Helper
                 // TODO: You can define your "roles" to your Claims.
                 
                 new Claim(ClaimTypes.Role, user.LoginRole),
-                new Claim("MemberId",user.Id.ToString())
+                new Claim("Email",user.Email)
             };
 
             var userClaimsIdentity = new ClaimsIdentity(claims);

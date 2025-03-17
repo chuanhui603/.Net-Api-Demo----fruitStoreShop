@@ -79,7 +79,24 @@ namespace 水水水果API.Services
 
         public IEnumerable<OrderDTO> GetOrdersByPage(int page, int pageSize)
         {
-            throw new NotImplementedException();
+            return _orderRepository.GetOrdersByPage(page, pageSize).Select(order => new OrderDTO
+            {
+                Id = order.Id,
+                OrderNumber = order.OrderNumber,
+                OrderStatus = order.OrderStatus,
+                PaymentStatus = order.PaymentStatus,
+                PaymentMethod = order.PaymentMethod,
+                PaymentTime = order.PaymentTime,
+                DeliveryMethod = order.DeliveryMethod,
+                EstimatedDeliveryTime = order.EstimatedDeliveryTime,
+                ActualDeliveryTime = order.ActualDeliveryTime,
+                DeliveryStatus = order.DeliveryStatus,
+                ProductAmount = order.ProductAmount,
+                DiscountAmount = order.DiscountAmount,
+                ShippingFee = order.ShippingFee,
+                TotalAmount = order.TotalAmount,
+                Notes = order.Notes,
+            });
         }
 
         public void UpdateOrder(Guid id, OrderDTO order)

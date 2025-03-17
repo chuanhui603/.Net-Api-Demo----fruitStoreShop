@@ -34,6 +34,29 @@
             });
 
         }
+        public IEnumerable<MemberDTO> GetMembersByPage(int page, int pageSize)
+        {
+            return _memberRepository.GetMembersByPage(page, pageSize).Select(r => new MemberDTO
+            {
+                Id = r.Id,
+                Email = r.Email,
+                PhoneNumber = r.PhoneNumber,
+                BirthDate = r.BirthDate,
+                Address = r.Address,
+                FirstName = r.FirstName,
+                LastName = r.LastName,
+                City = r.City,
+                Gender = r.Gender,
+                LoginRole = r.LoginRole,
+                Password = r.Password,
+                PostalCode = r.PostalCode,
+                Region = r.Region,
+                IsVerified = r.IsVerified,
+                LastLoginTime = r.LastLoginTime,
+                CreatedAt = r.CreatedAt,
+                UpdatedAt = r.UpdatedAt
+            });
+        }
 
         public void CreateMember(MemberDTO member)
         {
@@ -100,5 +123,7 @@
         {
             _memberRepository.DeleteMember(id);
         }
+
+
     }
 }
