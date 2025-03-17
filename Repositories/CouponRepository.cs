@@ -18,7 +18,7 @@
         }
         public IEnumerable<Coupon> GetCouponsByPage(int page, int pageSize)
         {
-          return _dbConnection.GetByPage<Coupon>(_tableName, page, pageSize);
+            return _dbConnection.GetByPage<Coupon>(_tableName, page, pageSize);
         }
         public Coupon GetCouponById(Guid id)
         {
@@ -52,7 +52,5 @@
         {
             _dbConnection.Delete(_tableName, id);
         }
-
-
     }
 }

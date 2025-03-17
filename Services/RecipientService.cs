@@ -23,6 +23,19 @@
             });
         }
 
+        public IEnumerable<RecipientDTO> GetRecipientsByPage(int page, int pageSize)
+        {
+            return _recipientRepository.GetRecipientsByPage(page, pageSize).Select(r => new RecipientDTO
+            {
+                Id = r.Id,
+                FirstName = r.FirstName,
+                LastName = r.LastName,
+                Phone = r.Phone,
+                Address = r.Address,
+                Gender = r.Gender,
+                Email = r.Email,
+            });
+        }
         public void CreateRecipient(RecipientDTO recipient)
         {
             // Implementation for creating a recipient
@@ -77,5 +90,7 @@
                 Address = recipient.Address
             };
         }
+
+
     }
 }

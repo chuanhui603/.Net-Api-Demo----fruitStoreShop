@@ -12,7 +12,7 @@ namespace 水水水果API.Repositories
         }
         public IEnumerable<Order> GetOrdersByPage(int page, int pageSize)
         {
-            throw new NotImplementedException();
+           return _dbConnection.GetByPage<Order>(_tableName, page, pageSize);
         }
         public IEnumerable<Order> GetOrders()
         {

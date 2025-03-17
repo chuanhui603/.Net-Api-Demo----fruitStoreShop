@@ -3,6 +3,7 @@
     public interface IMemberService
     {
         IEnumerable<MemberDTO> GetMembers();
+        IEnumerable<MemberDTO> GetMembersByPage(int page, int pageSize);
         void CreateMember(MemberDTO member);
         void DeleteMember(Guid id);
         MemberDTO GetMemberById(Guid id);
