@@ -51,7 +51,7 @@ try
                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetValue<string>("JWTSetting:JWTSignKey")))
            };
        });
-    builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(builder.Configuration.GetValue<string>("ConnectionStrings:RedisConnectionStrings")));
+
     builder.Services.AddAuthorization();
     // 添加 CORS 設定
     builder.Services.AddCors(options =>
@@ -65,7 +65,7 @@ try
             });
     });
     //加入依賴注入服務
-    builder.Services.AddFruitStoreServices();
+    builder.Services.AddFruitStoreServices(builder.Configuration);
     //註冊設定檔
     builder.Services.AddConfigurationModelSetting(builder.Configuration);
     //註冊Logger
