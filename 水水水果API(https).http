@@ -1,0 +1,162 @@
+@水水水果API_HostAddress = http://localhost:5139
+@token = eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiLmsLTmsLTmsLTmnpwiLCJleHAiOjE3NjA5NTEyNjgsInN1YiI6IkNoYXJrQ2hhbyIsImp0aSI6ImI0YjFlN2QyLTA2ZjctNDJhMy1hOWZkLTAwZTk2YWEzZmQ0YiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiRW1haWwiOiIxMjM0NTZAMTIzLmNvbSIsImlhdCI6MTc2MDk1MDY2OCwibmJmIjoxNzYwOTUwNjY4fQ.8Zjp3QQj0xNI07R0MnxsxPrMwdQVIYFEJyP2vSek_zk
+
+GET {{水水水果API_HostAddress}}/api/test/test
+Accept: application/json
+
+###
+
+GET {{水水水果API_HostAddress}}/api/test/claim
+Accept: application/json
+Authorization: Bearer Bearer
+###
+
+
+GET {{水水水果API_HostAddress}}/api/test/Mail
+Accept: application/json
+Authorization: BearereyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIiLCJqdGkiOiJlZGQxNTk1ZC05ZWVkLTRiOWItOTIwMS05N2NlMTJkMjhlMzkiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoi5rC05rC05rC05p6cIiwiZXhwIjoxNzM4NjU3NTUyLCJpYXQiOjE3Mzg2NTY5NTIsIm5iZiI6MTczODY1Njk1Mn0.i4gd24vqD_hfMVr5jJDBDxH3DBKcFPQ6OkzLeTXZYMQ
+
+###
+POST {{水水水果API_HostAddress}}/api/Auth/login
+Content-Type: application/json
+{
+  "Email": "123456@123.com",
+  "Password":"1234"
+}
+
+###
+Get {{水水水果API_HostAddress}}/api/Auth/logout
+Content-Type: application/json
+Authorization: Bearer {{token}}
+Accept: application/json
+
+
+###
+GET {{水水水果API_HostAddress}}/api/Recipient
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIiLCJqdGkiOiI0YjYzMTIzYS1kNDAwLTRkMmEtODU2ZC0zOWNkNmEzZjY1MWYiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoi5rC05rC05rC05p6cIiwiZXhwIjoxNzM4NjYzODgxLCJpYXQiOjE3Mzg2NjMyODEsIm5iZiI6MTczODY2MzI4MX0.GOGXCfZ68jHj_3ZX47cn_StJIR00hCaS3PNVC_al0WY
+
+
+###
+
+POST {{水水水果API_HostAddress}}/api/Recipient
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIiLCJqdGkiOiI1ZDZiMjY5ZC1mYTIxLTQyMzYtYjUxMC00N2M0ODA1NmM5MTIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiaXNzIjoi5rC05rC05rC05p6cIiwiZXhwIjoxNzM4NjMzNjUyLCJpYXQiOjE3Mzg2MzMwNTIsIm5iZiI6MTczODYzMzA1Mn0.sO4pY-qf9GVz-vmuTiAbzuDtEJa0LtDe1-yDbTyQcO0
+{
+  "FirstName": "John",
+  "LastName":"Doe",
+  "address": "123 Main St",
+  "Phone":"123456",
+  "Email":"Test@gmail.com",
+  "Gender":"M"
+}
+###
+
+PUT {{水水水果API_HostAddress}}/api/Recipient/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "John Doe",
+  "address": "456 Elm St"
+}
+###
+DELETE {{水水水果API_HostAddress}}/api/Recipient/1
+Accept: application/json
+###
+GET {{水水水果API_HostAddress}}/api/Product
+Accept: application/json
+###
+GET {{水水水果API_HostAddress}}/api/Product/1
+Accept: application/json
+###
+POST {{水水水果API_HostAddress}}/api/Product
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Apple",
+  "price": 1.99
+}
+###
+PUT {{水水水果API_HostAddress}}/api/Product/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Apple",
+  "price": 2.99
+}
+###
+DELETE {{水水水果API_HostAddress}}/api/Product/1
+Accept: application/json
+###
+GET {{水水水果API_HostAddress}}/api/Orders
+Accept: application/json
+###
+GET {{水水水果API_HostAddress}}/api/Orders/1
+Accept: application/json
+###
+POST {{水水水果API_HostAddress}}/api/Orders
+Content-Type: application/json
+
+{
+  "id": 1,
+  "productId": 1,
+  "quantity": 10
+}
+###
+PUT {{水水水果API_HostAddress}}/api/Orders/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "productId": 1,
+  "quantity": 20
+}
+###
+DELETE {{水水水果API_HostAddress}}/api/Orders/1
+Accept: application/json
+###
+POST {{水水水果API_HostAddress}}/api/Customer/Info
+Content-Type: application/json
+Authorization: Bearer {{token}}
+Accept: application/json
+[1]
+###
+GET {{水水水果API_HostAddress}}/api/Customer/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+Accept: application/json
+###
+POST {{水水水果API_HostAddress}}/api/Customer
+Content-Type: application/json
+
+{
+  "FirstName": "Chark",
+  "LastName":"Chao",
+  "Gender": "M",
+  "Email": "12345678@123.com",
+  "Password":"1234",
+  "Phone":"071234567",
+  "BrandId": 0,
+  "BirthDay": "1997-06-03"
+}
+###
+PUT {{水水水果API_HostAddress}}/api/Customer
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Jane Doe",
+  "email": "jane.doe@newdomain.com"
+}
+###
+DELETE {{水水水果API_HostAddress}}/api/Member/75568306-ac26-44a0-a584-28c0cbec9eec
+Accept: application/json
+###
+GET {{水水水果API_HostAddress}}/test/Log
+Accept: application/json;
+
+
+

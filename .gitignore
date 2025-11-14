@@ -1,0 +1,27 @@
+# 忽略 Visual Studio 文件夾
+/.vs
+
+# 忽略編譯輸出文件夾
+/obj
+/bin
+/.vscode
+# 忽略日誌文件夾
+/logs
+/*/obj
+/*/bin
+# 忽略特定的 Markdown 文件
+commit-message-instructions.md
+
+# 忽略 node_modules 文件夾
+/node_modules
+
+# 忽略 GitHub 文件夾
+/.github
+/*/.github
+
+# 忽略環境配置文件
+.env
+DigiCertGlobalRootCA.crt.pem
+
+/wwwroot/node_modules
+appsettings.json
