@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using 水水水果API.Models.DTO.Login;
 namespace 水水水果API.Controllers;
 
 [ApiController]
@@ -45,6 +44,4 @@ public class AuthController : ControllerBase
             return StatusCode(500, "Internal server error: " + ex.Message);
         }
     }
-
-
 }

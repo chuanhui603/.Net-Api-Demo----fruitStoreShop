@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using 水水水果API.Models.DTO;
 
 namespace 水水水果API.Controllers
 {
@@ -38,7 +37,6 @@ namespace 水水水果API.Controllers
         [HttpPost("Create")]
         public IActionResult Create([FromBody] ProductDTO product)
         {
-
             _productService.CreateProduct(product);
             return Created();
         }
