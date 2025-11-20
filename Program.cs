@@ -2,9 +2,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using MySql.Data.MySqlClient;
 using Serilog;
-using System.Configuration;
 using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -59,6 +57,11 @@ try
 
     //加入依賴注入服務
     builder.Services.AddFruitStoreServices(builder.Configuration);
+
+
+
+
+
 
     //註冊設定檔
 
