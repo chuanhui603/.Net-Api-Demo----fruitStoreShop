@@ -35,16 +35,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CommonFrameWork\FrameWork.Helper.csproj" />
-    <ProjectReference Include="..\SqlCommonLib\Framework.SqlCommon.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="FrameWork.Helper">
-      <HintPath>..\..\..\HuiFrameWork\HuiFrameWork\bin\Debug\net8.0\FrameWork.Helper.dll</HintPath>
+    <Reference Include="FrameWork_Helper">
+      <HintPath>..\FrameWork_Helper\bin\Debug\net8.0\FrameWork_Helper.dll</HintPath>
     </Reference>
-    <Reference Include="Framework.SqlCommon">
-      <HintPath>..\..\..\HuiFrameWork\SqlCommonLib\bin\Debug\net8.0\Framework.SqlCommon.dll</HintPath>
+    <Reference Include="Framework_SqlCommon">
+      <HintPath>..\Framework_SqlCommon\bin\Debug\net8.0\Framework_SqlCommon.dll</HintPath>
     </Reference>
   </ItemGroup>
 
