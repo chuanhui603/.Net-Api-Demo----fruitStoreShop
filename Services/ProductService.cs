@@ -38,9 +38,8 @@ namespace 水水水果API.Services
         }
         public void CreateProduct(ProductDTO product)
         {
-         
-
             _logger.LogInformation("product: {product}", product);
+            
             // _productRepository.CreateProduct(new Product
             // {
             //     Id = Guid.NewGuid(),

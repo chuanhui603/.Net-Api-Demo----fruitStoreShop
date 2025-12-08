@@ -13,7 +13,6 @@ namespace 水水水果API.Repositories
         private readonly ICustomerRepository _customerRepository;
         private readonly ILogger<CustomerRepository> _logger;
 
-
         public MemberRepository(ILogger<CustomerRepository> logger,TWCRM_TESTContext crmConnection, SqlCommonContext commonContext, ICustomerRepository customerRepository)
         {
             _crmConnection = crmConnection;
@@ -40,6 +39,7 @@ namespace 水水水果API.Repositories
                 LastLoginAt = m.LastLoginAt,
             });
         }
+
         public IEnumerable<UserResponse> GetMemberByPage(int page, int pageSize)
         {
             return [.. _crmConnection.Members.Skip((page - 1) * pageSize).Take(pageSize).Select(m=>new UserResponse
@@ -104,11 +104,19 @@ namespace 水水水果API.Repositories
         {
             var targetMember = _crmConnection.Members.Find(mem.MemberId);
             DateTime currentDate = _commonContext.CRM.GetDbDate(_crmConnect, _crmConnection.Database.CurrentTransaction);
+            Customer updateCust = MappingHelper.ModelMapping<Customer>(mem);
+            if(targetMember == null)
+                throw new ArgumentException($"Member with ID {mem.MemberId} not found.");
+
             _commonContext.CRM.ExecuteTransaction(_crmConnection, () =>
             {
-                Customer updateCust = MappingHelper.ModelMapping<Customer>(mem);
                 _customerRepository.UpdateCustomer(updateCust);
+                targetMember.MemberTierId = mem.MemberTierId;
+                targetMember.Email = mem.Email;
+                targetMember.IsActive = mem.IsActive;
+                targetMember.LastLoginAt = mem.LastLoginAt;
                 targetMember.LastUpdateDate = currentDate;
+
                 _crmConnection.SaveChanges();
             });
         }

@@ -12,7 +12,7 @@ namespace 水水水果API.Filters
             var user = _httpcontext.HttpContext.User;
             if (user != null)
             {
-                var memberIdClaim = user.Claims.FirstOrDefault(c => c.Type == "Email");
+                var memberIdClaim = user.Claims.SingleOrDefault(c => c.Type == "Email");
                 if (memberIdClaim != null)
                 {
                     var db = _redis.GetDatabase();

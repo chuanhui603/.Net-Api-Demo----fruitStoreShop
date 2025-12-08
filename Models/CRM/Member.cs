@@ -9,7 +9,7 @@ public partial class Member
 {
     public int? MemberId { get; set; }
 
-    public int? CustomerId { get; set; }
+    public int CustomerId { get; set; }
 
     public int? MemberTierId { get; set; }
 

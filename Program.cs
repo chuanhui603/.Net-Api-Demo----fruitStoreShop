@@ -58,13 +58,7 @@ try
     //加入依賴注入服務
     builder.Services.AddFruitStoreServices(builder.Configuration);
 
-
-
-
-
-
     //註冊設定檔
-
     builder.Services.AddConfigurationModelSetting(builder.Configuration);
     //註冊Logger
     builder.Services.AddSerilog();

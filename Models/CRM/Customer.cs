@@ -21,9 +21,9 @@ public partial class Customer
 
     public string Phone { get; set; }
 
-    public DateTime? CreateDate { get; set; }
+    public DateTime CreateDate { get; set; }
 
-    public DateTime? LastUpdateDate { get; set; }
+    public DateTime LastUpdateDate { get; set; }
 
     public virtual ICollection<Member> Members { get; set; } = new List<Member>();
 }

@@ -11,6 +11,7 @@ namespace 水水水果API.Repositories
     public class CustomerRepository : ICustomerRepository
     {
         private readonly TWCRM_TESTContext _crmConnection;
+
         private readonly SqlCommonContext _commonContext;
         private readonly DbConnection _crmConnect;
         private readonly ILogger<CustomerRepository> _logger;
@@ -21,11 +22,11 @@ namespace 水水水果API.Repositories
             _commonContext = commonContext;
             _crmConnect = crmConnection.Database.GetDbConnection();
             _logger = logger;
+
         }
 
         public int CreateCustomer(Customer cust)
         {
-         
             DateTime dateNow = _commonContext.CRM.GetDbDate(_crmConnect, _crmConnection.Database.CurrentTransaction);
 
             var createCust = MappingHelper.ModelMapping<Customer>(cust);
@@ -36,12 +37,14 @@ namespace 水水水果API.Repositories
             {
                 if (createCust.CustomerId == null)
                 {
+
                     createCust.CustomerId = _crmConnection.Customers.Max(x => x.CustomerId) + 1;
                     if  (createCust.CustomerId == null)
                     {
                         createCust.CustomerId = 1;
                     }
                 }
+                
                 _crmConnection.Customers.Add(createCust);
                 _crmConnection.SaveChanges();
             });
@@ -68,6 +71,9 @@ namespace 水水水果API.Repositories
 
         public Customer GetCustomerById(int custId)
         {
+
+
+
             return _crmConnection.Customers.Where(c => c.CustomerId == custId).SingleOrDefault();
         }
     }

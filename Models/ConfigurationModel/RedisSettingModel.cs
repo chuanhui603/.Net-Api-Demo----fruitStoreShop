@@ -5,7 +5,5 @@
         public const string RedisSetting = "RedisSetting";
         public string LogoutDefault { get; set; }
         public string ConnectionString { get; set; }
-
-      
     }
 }

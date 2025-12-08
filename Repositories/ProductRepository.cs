@@ -40,7 +40,5 @@ namespace 水水水果API.Repositories
            var product =  _rmsConnection.Products.Where(x=>x.Id == id).First();
             _rmsConnection.Products.Remove(product);
         }
-
-
     }
 }

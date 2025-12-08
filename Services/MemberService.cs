@@ -5,7 +5,6 @@
         private readonly IMemberRepository _memberRepository;
         private readonly ILogger<MemberService> _logger;
 
-
         public MemberService(ILogger<MemberService> logger, IMemberRepository memberRepository, ICustomerRepository customerRepository)
         {
             _logger = logger;
@@ -15,6 +14,7 @@
         {
                 return _memberRepository.GetMember(customers);
         }
+
         public IEnumerable<UserResponse> GetMembersByPage(int page, int pageSize)
         {
             return _memberRepository.GetMemberByPage(page, pageSize);
@@ -23,10 +23,12 @@
         public void CreateMember(UserCreate member)
         {
             Member existmem = _memberRepository.GetMemberByEmail(member.Email);
+
             if (existmem != null) throw new Exception("建立客戶失敗，帳號已重複");
 
             _memberRepository.CreateMember(member);
         }
+
         public void UpdateMember(UserUpdate member)
         {
             _memberRepository.UpdateMember(member);

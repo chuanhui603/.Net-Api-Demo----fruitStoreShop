@@ -52,7 +52,7 @@ namespace 水水水果API.Controllers
             return NoContent();
         }
 
-        [HttpDelete("Delete")]
+        [HttpPost("Delete")]
         public IActionResult Delete([FromBody] int id)
         {
             _logger.LogInformation("Deleting product with ID: {id}", id);
