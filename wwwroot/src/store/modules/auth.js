@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { jwtDecode } from 'jwt-decode'
 
+const apibase = import.meta.env.VITE_API_URL || '/api'
+
 const state = {
   token: localStorage.getItem('token') || null,
   expiredDate: JSON.parse(localStorage.getItem('expiredDate')) || null,
@@ -31,7 +33,7 @@ const mutations = {
 const actions = {
   async login({ commit }, credentials) {
     try {
-      const response = await axios.post('/api/Auth/login', {
+      const response = await axios.post(`${apibase}/Auth/login`, {
         email: credentials.email,
         password: credentials.password
       })
@@ -54,10 +56,23 @@ const actions = {
     }
   },
 
+  async checkUserExists(email) {
+    console.log('Logging in user with email:', email);
+    try {
+      const response = await axios.get(`${apibase}/Customer/exists`, { params: { email } })
+      if (response.data.exists) {
+        
+        return true
+      }
+    } catch (error) {
+      throw error
+    }
+  },
   
   async register({ commit }, userData) {
     try {
-      const response = await axios.post('/api/Customer',userData )
+      console.log('Registering user with data:', userData);
+      const response = await axios.post(`${apibase}/Customer/Create`,userData )
       if (response.status !== 204) {
         throw new Error('註冊失敗，請稍後再試')
       }

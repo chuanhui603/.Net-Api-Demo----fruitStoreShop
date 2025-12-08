@@ -105,7 +105,7 @@ const register = async () => {
 
   loading.value = true
   try {
-    await store.dispatch('member/register', userData.value)
+    await store.dispatch('auth/register', userData.value)
     router.push('/login')
   } catch (error) {
     alert('註冊失敗，請稍後再試')

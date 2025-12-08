@@ -69,7 +69,7 @@ namespace 水水水果.Controllers
         }
 
         // PUT api/<CustomerController>
-        [HttpPut]
+        [HttpPost("Update")]
         public IActionResult Put([FromBody] UserUpdate member)
         {
             try

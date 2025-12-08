@@ -29,14 +29,12 @@
                 </div>
               </form>
               
-              <!-- OAuth2 登入分隔線 -->
               <div class="divider my-4">
                 <hr>
                 <span class="divider-text">或使用以下方式登入</span>
                 <hr>
               </div>
               
-              <!-- OAuth2 登入按鈕 -->
               <div class="oauth-login">
                 <button @click="loginWithGoogle" class="btn btn-google mb-2 w-100" :disabled="oauthLoading.google">
                   <svg width="20" height="20" viewBox="0 0 24 24" class="me-2">

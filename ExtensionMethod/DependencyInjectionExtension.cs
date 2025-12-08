@@ -1,4 +1,3 @@
-using Framework.SqlCommon.SQLHelper;
 
 namespace 水水水果API.ExtensionMethod;
 public static class DependencyInjectionExtension
