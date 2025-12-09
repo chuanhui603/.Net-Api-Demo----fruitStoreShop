@@ -38,12 +38,12 @@ const actions = {
         password: credentials.password
       })
       const { token, expiration } = response.data
-      
+
       const decodedToken = jwtDecode(token)
       const user = {
-        id: decodedToken.jti ,
+        id: decodedToken.jti,
         email: decodedToken.email,
-        name: decodedToken.sub 
+        name: decodedToken.sub
       }
 
 
@@ -56,23 +56,25 @@ const actions = {
     }
   },
 
-  async checkUserExists(email) {
-    console.log('Logging in user with email:', email);
+  async checkUserExists(_, email) {
     try {
       const response = await axios.get(`${apibase}/Customer/exists`, { params: { email } })
-      if (response.data.exists) {
-        
-        return true
+      if (response.data) {
+        return true;
       }
+      return false;
     } catch (error) {
-      throw error
+      if (error.response && error.response.status === 404) {
+        return false;
+      }
+      throw error;
     }
   },
-  
+
   async register({ commit }, userData) {
     try {
       console.log('Registering user with data:', userData);
-      const response = await axios.post(`${apibase}/Customer/Create`,userData )
+      const response = await axios.post(`${apibase}/Customer/Create`, userData)
       if (response.status !== 204) {
         throw new Error('註冊失敗，請稍後再試')
       }

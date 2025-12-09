@@ -19,7 +19,10 @@
                 </div>
                 <div class="mb-3">
                   <label for="email" class="form-label">電子郵件</label>
-                  <input type="email" v-model="userData.Email" class="form-control" id="email" required>
+                  <input type="email" v-model="userData.Email" @blur="checkEmailExists" class="form-control" id="email"
+                    required>
+                  <label v-if="isEmailExists" class="text-danger mt-1" style="font-size:0.95em;">{{ emailMsg
+                  }}</label>
                 </div>
                 <div class="mb-3">
                   <label for="password" class="form-label">密碼</label>
@@ -80,22 +83,53 @@ const router = useRouter()
 // 響應式數據
 const userData = ref({
   "FirstName": "",
-  "LastName":"",
+  "LastName": "",
   "address": "",
-  "Phone":"",
-  "Email":"",
-  "Gender":"",
-  "Password":""
+  "Phone": "",
+  "Email": "",
+  "Gender": "",
+  "Password": ""
 })
 const confirmPassword = ref('')
 const agreeTerms = ref(false)
 const loading = ref(false)
+const emailMsg = ref('');
+const isEmailExists = ref(false);
+
+
+const checkEmailExists = async () => {
+  emailMsg.value = '';
+  isEmailExists.value = false;
+  if (!userData.value.Email) {
+    emailMsg.value = '請輸入Email';
+    isEmailExists.value = true;
+    return;
+  }
+  try {
+    const exists = await store.dispatch('auth/checkUserExists', userData.value.Email)
+    if (!exists) {
+      isEmailExists.value = false;
+      return;
+    }
+  } catch (error) {
+    console.error(error);
+    emailMsg.value = `系統發生錯誤，${error}`;
+  }
+  emailMsg.value = '此電子郵件已被註冊';
+  isEmailExists.value = true;
+  return;
+}
 
 // 方法
 const register = async () => {
   if (userData.value.Password !== confirmPassword.value) {
     alert('密碼不一致')
     return
+  }
+
+  if (isEmailExists.value == true) {
+    alert('此電子郵件已被註冊');
+    return;
   }
 
   if (!agreeTerms.value) {
@@ -125,4 +159,4 @@ const showTerms = () => {
   max-width: 500px;
   margin: 0 auto;
 }
-</style> 
+</style>

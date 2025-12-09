@@ -79,11 +79,13 @@ namespace 水水水果API.Repositories
             createMem.LastLoginAt = dateNow;
             createMem.IsActive = true;
 
+            //新增客戶有BUG需要修
             _commonContext.CRM.ExecuteTransaction(_crmConnection, () =>
             {
                 if (existCust == null || mem.CustomerId == null)
                 {
-                    Customer cust = MappingHelper.ModelMapping<Customer>(mem);
+             
+                    Customer cust = MappingHelper.ModelMapping<Customer>(createMem);
                     createMem.CustomerId = _customerRepository.CreateCustomer(cust);
                 }
 

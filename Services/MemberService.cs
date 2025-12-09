@@ -8,11 +8,11 @@
         public MemberService(ILogger<MemberService> logger, IMemberRepository memberRepository, ICustomerRepository customerRepository)
         {
             _logger = logger;
-            _memberRepository = memberRepository; 
+            _memberRepository = memberRepository;
         }
         public IEnumerable<UserResponse> GetMembers(List<int> customers)
         {
-                return _memberRepository.GetMember(customers);
+            return _memberRepository.GetMember(customers);
         }
 
         public IEnumerable<UserResponse> GetMembersByPage(int page, int pageSize)
@@ -55,6 +55,11 @@
         {
             Member member = _memberRepository.GetMemberById(id) ?? throw new ArgumentNullException($"Member is not exist. ID: {id}");
             _memberRepository.DeleteMember(member);
+        }
+
+        public bool ValidMemberByEmail(string email)
+        {
+            return _memberRepository.GetMemberByEmail(email) != null;
         }
     }
 }
