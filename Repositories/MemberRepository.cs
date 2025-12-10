@@ -85,7 +85,7 @@ namespace 水水水果API.Repositories
                 if (existCust == null || mem.CustomerId == null)
                 {
              
-                    Customer cust = MappingHelper.ModelMapping<Customer>(createMem);
+                    Customer cust = MappingHelper.ModelMapping<Customer>(mem);
                     createMem.CustomerId = _customerRepository.CreateCustomer(cust);
                 }
 

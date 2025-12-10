@@ -18,6 +18,10 @@
                   </div>
                 </div>
                 <div class="mb-3">
+                  <label for="birthday" class="form-label">生日</label>
+                  <input type="date" v-model="userData.BirthDay" class="form-control" id="birthday" required>
+                </div>
+                <div class="mb-3">
                   <label for="email" class="form-label">電子郵件</label>
                   <input type="email" v-model="userData.Email" @blur="checkEmailExists" class="form-control" id="email"
                     required>
@@ -44,9 +48,9 @@
                   <label for="gender" class="form-label">性別</label>
                   <select v-model="userData.Gender" class="form-select" id="gender" required>
                     <option value="">請選擇</option>
-                    <option value="male">男性</option>
-                    <option value="female">女性</option>
-                    <option value="other">其他</option>
+                    <option value="m">男性</option>
+                    <option value="f">女性</option>
+                    <option value="o">其他</option>
                   </select>
                 </div>
                 <div class="mb-3 form-check">
@@ -84,6 +88,7 @@ const router = useRouter()
 const userData = ref({
   "FirstName": "",
   "LastName": "",
+  "BirthDay": "",
   "address": "",
   "Phone": "",
   "Email": "",
@@ -95,7 +100,6 @@ const agreeTerms = ref(false)
 const loading = ref(false)
 const emailMsg = ref('');
 const isEmailExists = ref(false);
-
 
 const checkEmailExists = async () => {
   emailMsg.value = '';
@@ -140,7 +144,7 @@ const register = async () => {
   loading.value = true
   try {
     await store.dispatch('auth/register', userData.value)
-    router.push('/login')
+    router.push('/')
   } catch (error) {
     alert('註冊失敗，請稍後再試')
   } finally {
