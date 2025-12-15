@@ -2,21 +2,33 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace 水水水果API.Models.RMS;
 
+[Table("Category")]
+[Index("Code", Name = "UQ__Category__A25C5AA70F09D5F3", IsUnique = true)]
 public partial class Category
 {
+    [Key]
     public int Id { get; set; }
 
+    [Required]
+    [StringLength(50)]
     public string Code { get; set; }
 
     public int BrandId { get; set; }
 
+    [Required]
+    [StringLength(255)]
     public string Description { get; set; }
 
+    [Column(TypeName = "datetime")]
     public DateTime CreateDate { get; set; }
 
+    [Column(TypeName = "datetime")]
     public DateTime LastUpdateDate { get; set; }
 
     public bool IsActive { get; set; }

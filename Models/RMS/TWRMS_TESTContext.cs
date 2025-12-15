@@ -17,117 +17,119 @@ public partial class TWRMS_TESTContext : DbContext
 
     public virtual DbSet<Coupon> Coupons { get; set; }
 
+    public virtual DbSet<Currency> Currencies { get; set; }
+
     public virtual DbSet<CustomerCoupon> CustomerCoupons { get; set; }
+
+    public virtual DbSet<Discount> Discounts { get; set; }
+
+    public virtual DbSet<Mileage> Mileages { get; set; }
+
+    public virtual DbSet<MileageScheme> MileageSchemes { get; set; }
+
+    public virtual DbSet<Order> Orders { get; set; }
 
     public virtual DbSet<Product> Products { get; set; }
 
+    public virtual DbSet<ShoppingCart> ShoppingCarts { get; set; }
+
     public virtual DbSet<Store> Stores { get; set; }
+
+    public virtual DbSet<Transaction> Transactions { get; set; }
+
+    public virtual DbSet<TransactionItem> TransactionItems { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Category>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Category__3214EC07C5DBDCD8");
+            entity.HasKey(e => e.Id).HasName("PK__Category__3214EC07FE08DCA7");
 
-            entity.ToTable("Category");
-
-            entity.HasIndex(e => e.Code, "UQ__Category__A25C5AA7F1F1B7CC").IsUnique();
-
-            entity.Property(e => e.Code)
-                .IsRequired()
-                .HasMaxLength(50);
-            entity.Property(e => e.CreateDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.Description)
-                .IsRequired()
-                .HasMaxLength(255);
+            entity.Property(e => e.CreateDate).HasDefaultValueSql("(getdate())");
             entity.Property(e => e.IsActive).HasDefaultValue(true);
-            entity.Property(e => e.LastUpdateDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
+            entity.Property(e => e.LastUpdateDate).HasDefaultValueSql("(getdate())");
         });
 
         modelBuilder.Entity<Coupon>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Coupon__3214EC07BEFDB38B");
+            entity.HasKey(e => e.Id).HasName("PK__Coupon__3214EC072D2E8226");
 
-            entity.ToTable("Coupon");
-
-            entity.HasIndex(e => e.Code, "UQ__Coupon__A25C5AA7A13AAF1C").IsUnique();
-
-            entity.Property(e => e.Code)
-                .IsRequired()
-                .HasMaxLength(50);
-            entity.Property(e => e.CreateDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.DiscountId)
-                .IsRequired()
-                .HasMaxLength(50);
-            entity.Property(e => e.ExpireType).HasColumnType("datetime");
             entity.Property(e => e.IsActive).HasDefaultValue(true);
-            entity.Property(e => e.LastUpdateDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<Currency>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Currency__3214EC07A53190A7");
+
+            entity.Property(e => e.IsActive).HasDefaultValue(true);
         });
 
         modelBuilder.Entity<CustomerCoupon>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Customer__3214EC07C9A3B72C");
+            entity.HasKey(e => e.Id).HasName("PK__Customer__3214EC07E1034199");
+        });
 
-            entity.ToTable("CustomerCoupon");
+        modelBuilder.Entity<Discount>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Discount__3214EC07CAAE900A");
 
-            entity.Property(e => e.CreateDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.ExpireDate).HasColumnType("datetime");
-            entity.Property(e => e.LastUpdateDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
+            entity.Property(e => e.IsActive).HasDefaultValue(true);
+            entity.Property(e => e.IsCombinable).HasDefaultValue(true);
+        });
+
+        modelBuilder.Entity<Mileage>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Mileage__3214EC07B8008188");
+        });
+
+        modelBuilder.Entity<MileageScheme>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__MileageS__3214EC07306F03D8");
+
+            entity.Property(e => e.EarnPerAmount).HasDefaultValue(1);
+            entity.Property(e => e.IsActive).HasDefaultValue(true);
+            entity.Property(e => e.MinRedemption).HasDefaultValue(1);
+            entity.Property(e => e.RedemptionRate).HasDefaultValue(1);
+        });
+
+        modelBuilder.Entity<Order>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Order__3214EC0713B99F6A");
         });
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Product__3214EC07606D2155");
+            entity.HasKey(e => e.Id).HasName("PK__Product__3214EC0750D119F1");
 
-            entity.ToTable("Product");
-
-            entity.HasIndex(e => e.Code, "UQ__Product__A25C5AA76245F7B9").IsUnique();
-
-            entity.Property(e => e.Code)
-                .IsRequired()
-                .HasMaxLength(50);
-            entity.Property(e => e.CreateDate)
-                .IsRequired()
-                .HasMaxLength(50);
-            entity.Property(e => e.Description).HasColumnType("datetime");
             entity.Property(e => e.IsActive).HasDefaultValue(true);
-            entity.Property(e => e.LastUpdateDate)
-                .IsRequired()
-                .HasMaxLength(100);
-            entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
+        });
+
+        modelBuilder.Entity<ShoppingCart>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Shopping__3214EC0757BD14DD");
+
+            entity.Property(e => e.IsActive).HasDefaultValue(true);
         });
 
         modelBuilder.Entity<Store>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Store__3214EC07EE98BE86");
+            entity.HasKey(e => e.Id).HasName("PK__Store__3214EC07235CD5AF");
 
-            entity.ToTable("Store");
-
-            entity.Property(e => e.Code)
-                .IsRequired()
-                .HasMaxLength(100);
-            entity.Property(e => e.CreateDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.Description)
-                .IsRequired()
-                .HasMaxLength(255);
             entity.Property(e => e.IsActive).HasDefaultValue(true);
-            entity.Property(e => e.LastUpdateDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<Transaction>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Transact__3214EC071723ECB1");
+
+            entity.Property(e => e.IsActive).HasDefaultValue(true);
+        });
+
+        modelBuilder.Entity<TransactionItem>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Transact__3214EC073CED8FD3");
+
+            entity.Property(e => e.IsActive).HasDefaultValue(true);
         });
 
         OnModelCreatingPartial(modelBuilder);

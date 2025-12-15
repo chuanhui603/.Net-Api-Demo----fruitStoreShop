@@ -8,19 +8,41 @@ using Microsoft.EntityFrameworkCore;
 
 namespace 水水水果API.Models.RMS;
 
-[Table("Store")]
-public partial class Store
+[Table("Transaction")]
+public partial class Transaction
 {
     [Key]
     public int Id { get; set; }
 
+    public int? ParentTransactionId { get; set; }
+
     [Required]
-    [StringLength(100)]
-    public string Code { get; set; }
+    [Column("Transaction_Type")]
+    [StringLength(20)]
+    [Unicode(false)]
+    public string TransactionType { get; set; }
+
+    [Column("CustomerID")]
+    public int CustomerId { get; set; }
 
     [Required]
     [StringLength(255)]
     public string Description { get; set; }
+
+    [Column(TypeName = "datetime")]
+    public DateTime TransactionDate { get; set; }
+
+    [Column(TypeName = "decimal(18, 2)")]
+    public decimal Amount { get; set; }
+
+    [Required]
+    [StringLength(10)]
+    public string Currency { get; set; }
+
+    public int Status { get; set; }
+
+    [Column("PaymentMethodID")]
+    public int PaymentMethodId { get; set; }
 
     public int BrandId { get; set; }
 

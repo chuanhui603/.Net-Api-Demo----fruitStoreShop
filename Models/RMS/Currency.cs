@@ -8,37 +8,34 @@ using Microsoft.EntityFrameworkCore;
 
 namespace 水水水果API.Models.RMS;
 
-[Table("Coupon")]
-[Index("Code", Name = "UQ__Coupon__A25C5AA73F89713D", IsUnique = true)]
-public partial class Coupon
+[Table("Currency")]
+public partial class Currency
 {
     [Key]
     public int Id { get; set; }
 
-    public int CustomerGroupId { get; set; }
+    public int BrandId { get; set; }
+
+    [Required]
+    [StringLength(3)]
+    [Unicode(false)]
+    public string Code { get; set; }
+
+    [Required]
+    [StringLength(100)]
+    public string Description { get; set; }
 
     [Required]
     [StringLength(50)]
-    public string Code { get; set; }
+    public string Symbol { get; set; }
 
-    public int DiscountId { get; set; }
+    public int DecimalPlaces { get; set; }
 
-    public int MaxGlobalUses { get; set; }
-
-    public int MaxUsesPerCustomer { get; set; }
-
-    public int GlobalUsesCount { get; set; }
-
-    public int BrandId { get; set; }
-
-    [Column(TypeName = "datetime")]
-    public DateTime ExpireType { get; set; }
+    public bool IsActive { get; set; }
 
     [Column(TypeName = "datetime")]
     public DateTime CreateDate { get; set; }
 
     [Column(TypeName = "datetime")]
     public DateTime LastUpdateDate { get; set; }
-
-    public bool IsActive { get; set; }
 }

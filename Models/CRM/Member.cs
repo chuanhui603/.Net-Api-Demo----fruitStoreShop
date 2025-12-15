@@ -2,12 +2,17 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace 水水水果API.Models.CRM;
 
+[Table("Member")]
 public partial class Member
 {
-    public int? MemberId { get; set; }
+    [Key]
+    public int Id { get; set; }
 
     public int CustomerId { get; set; }
 
@@ -15,29 +20,45 @@ public partial class Member
 
     public int BrandId { get; set; }
 
+    [Column("StoreID")]
     public int StoreId { get; set; }
 
+    [Required]
+    [StringLength(100)]
     public string Email { get; set; }
 
+    [Required]
+    [StringLength(50)]
     public string PassWord { get; set; }
 
+    [Column(TypeName = "datetime")]
     public DateTime CreateDate { get; set; }
 
+    [Column(TypeName = "datetime")]
     public DateTime LastUpdateDate { get; set; }
 
     public bool IsActive { get; set; }
 
+    [Column(TypeName = "datetime")]
     public DateTime? LastLoginAt { get; set; }
 
+    [StringLength(20)]
     public string Provider { get; set; }
 
+    [StringLength(100)]
     public string ProviderId { get; set; }
 
+    [StringLength(100)]
     public string ProviderEmail { get; set; }
 
+    [StringLength(255)]
     public string AvatarUrl { get; set; }
 
+    [ForeignKey("CustomerId")]
+    [InverseProperty("Members")]
     public virtual Customer Customer { get; set; }
 
+    [ForeignKey("MemberTierId")]
+    [InverseProperty("Members")]
     public virtual MemberTier MemberTier { get; set; }
 }

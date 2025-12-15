@@ -6,39 +6,37 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace 水水水果API.Models.CRM;
+namespace 水水水果API.Models.RMS;
 
-[Table("Customer")]
-public partial class Customer
+[Table("Order")]
+public partial class Order
 {
     [Key]
     public int Id { get; set; }
 
+    public int CustomerId { get; set; }
+
+    public int? CurrencyId { get; set; }
+
     public int BrandId { get; set; }
 
-    [Required]
-    [StringLength(50)]
-    public string FirstName { get; set; }
+    public int StoreId { get; set; }
 
     [Required]
     [StringLength(50)]
-    public string LastName { get; set; }
+    [Unicode(false)]
+    public string OrderStatus { get; set; }
 
-    [StringLength(2)]
-    public string Gender { get; set; }
+    [Column(TypeName = "decimal(18, 2)")]
+    public decimal OrderAmountTotal { get; set; }
 
-    [Column(TypeName = "datetime")]
-    public DateTime BirthDay { get; set; }
-
-    [StringLength(10)]
-    public string Phone { get; set; }
+    [Required]
+    [StringLength(255)]
+    public string ShippingAddress { get; set; }
 
     [Column(TypeName = "datetime")]
     public DateTime CreateDate { get; set; }
 
     [Column(TypeName = "datetime")]
     public DateTime LastUpdateDate { get; set; }
-
-    [InverseProperty("Customer")]
-    public virtual ICollection<Member> Members { get; set; } = new List<Member>();
 }

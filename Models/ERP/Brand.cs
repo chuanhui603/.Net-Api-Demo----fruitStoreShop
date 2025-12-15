@@ -2,19 +2,29 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace 水水水果API.Models.ERP;
 
+[Table("Brand")]
 public partial class Brand
 {
+    [Key]
     public int Id { get; set; }
 
+    [Required]
+    [StringLength(100)]
     public string Code { get; set; }
 
+    [StringLength(100)]
     public string Description { get; set; }
 
+    [Column(TypeName = "datetime")]
     public DateTime CreateDate { get; set; }
 
+    [Column(TypeName = "datetime")]
     public DateTime LastUpdateDate { get; set; }
 
     public bool IsActive { get; set; }

@@ -2,11 +2,16 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace 水水水果API.Models.RMS;
 
+[Table("CustomerCoupon")]
 public partial class CustomerCoupon
 {
+    [Key]
     public int Id { get; set; }
 
     public int CustomerId { get; set; }
@@ -15,9 +20,12 @@ public partial class CustomerCoupon
 
     public int BrandId { get; set; }
 
+    [Column(TypeName = "datetime")]
     public DateTime ExpireDate { get; set; }
 
+    [Column(TypeName = "datetime")]
     public DateTime CreateDate { get; set; }
 
+    [Column(TypeName = "datetime")]
     public DateTime LastUpdateDate { get; set; }
 }

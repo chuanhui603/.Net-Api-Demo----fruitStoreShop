@@ -15,6 +15,8 @@ public partial class TWCRM_TESTContext : DbContext
 
     public virtual DbSet<Customer> Customers { get; set; }
 
+    public virtual DbSet<CustomerGroup> CustomerGroups { get; set; }
+
     public virtual DbSet<Member> Members { get; set; }
 
     public virtual DbSet<MemberTier> MemberTiers { get; set; }
@@ -23,79 +25,38 @@ public partial class TWCRM_TESTContext : DbContext
     {
         modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasKey(e => e.CustomerId).HasName("PK__Customer__A4AE64D84DC65419");
+            entity.HasKey(e => e.Id).HasName("PK__Customer__3214EC07DE2DE93F");
 
-            entity.ToTable("Customer");
+            entity.Property(e => e.Id).ValueGeneratedNever();
+        });
 
-            entity.Property(e => e.CustomerId).ValueGeneratedNever();
-            entity.Property(e => e.BirthDay).HasColumnType("datetime");
-            entity.Property(e => e.CreateDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.FirstName)
-                .IsRequired()
-                .HasMaxLength(50);
-            entity.Property(e => e.Gender).HasMaxLength(2);
-            entity.Property(e => e.LastName)
-                .IsRequired()
-                .HasMaxLength(50);
-            entity.Property(e => e.LastUpdateDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.Phone).HasMaxLength(10);
+        modelBuilder.Entity<CustomerGroup>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Customer__3214EC07C8EECF20");
+
+            entity.Property(e => e.IsActive).HasDefaultValue(true);
         });
 
         modelBuilder.Entity<Member>(entity =>
         {
-            entity.HasKey(e => e.MemberId).HasName("PK__Member__0CF04B184EC91ECE");
+            entity.HasKey(e => e.Id).HasName("PK__Member__3214EC07833E48E4");
 
-            entity.ToTable("Member");
-
-            entity.Property(e => e.MemberId).ValueGeneratedNever();
-            entity.Property(e => e.AvatarUrl).HasMaxLength(255);
-            entity.Property(e => e.CreateDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.Email)
-                .IsRequired()
-                .HasMaxLength(100);
+            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.IsActive).HasDefaultValue(true);
-            entity.Property(e => e.LastLoginAt).HasColumnType("datetime");
-            entity.Property(e => e.LastUpdateDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.PassWord)
-                .IsRequired()
-                .HasMaxLength(50);
-            entity.Property(e => e.Provider).HasMaxLength(20);
-            entity.Property(e => e.ProviderEmail).HasMaxLength(100);
-            entity.Property(e => e.ProviderId).HasMaxLength(100);
-            entity.Property(e => e.StoreId).HasColumnName("StoreID");
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Members)
-                .HasForeignKey(d => d.CustomerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Member_Customer");
 
-            entity.HasOne(d => d.MemberTier).WithMany(p => p.Members)
-                .HasForeignKey(d => d.MemberTierId)
-                .HasConstraintName("FK_Member_MemberTier");
+            entity.HasOne(d => d.MemberTier).WithMany(p => p.Members).HasConstraintName("FK_Member_MemberTier");
         });
 
         modelBuilder.Entity<MemberTier>(entity =>
         {
-            entity.HasKey(e => e.MemberTierId).HasName("PK__MemberTi__817C5A2BD7D001A8");
+            entity.HasKey(e => e.Id).HasName("PK__MemberTi__3214EC073DC5DA03");
 
-            entity.ToTable("MemberTier");
-
-            entity.Property(e => e.MemberTierId).ValueGeneratedNever();
-            entity.Property(e => e.CreateDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
+            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.IsActive).HasDefaultValue(true);
-            entity.Property(e => e.LastUpdateDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
         });
 
         OnModelCreatingPartial(modelBuilder);
