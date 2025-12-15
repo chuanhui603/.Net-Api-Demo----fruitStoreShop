@@ -91,7 +91,7 @@ try
     if (app.Environment.IsDevelopment())
 {
         //同時啟動Vue測試
-        var frontProjectPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"); 
+        var frontProjectPath = Path.Combine(Directory.GetCurrentDirectory(), "..", "FruitShopDemo_Fronted"); 
         if (Directory.Exists(frontProjectPath))
         {
             try
