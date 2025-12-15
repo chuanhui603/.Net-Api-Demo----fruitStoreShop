@@ -1,0 +1,48 @@
+name: .NET Core Desktop - Build Only
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    strategy:
+      matrix:
+        configuration: [Debug, Release] # 分別運行 Debug 和 Release 配置
+
+    runs-on: windows-latest
+
+    env:
+      Solution_Name: your-solution-name # 只保留解決方案名稱
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    # 安裝 .NET Core SDK
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    # 設定 MSBuild 工具
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v2
+
+    # 還原應用程式依賴項 (NuGet packages)
+    - name: Restore the application dependencies
+      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
+      env:
+        Configuration: ${{ matrix.configuration }}
+
+    # 建置整個解決方案
+    - name: Build the solution
+      run: msbuild $env:Solution_Name /t:Build /p:Configuration=$env:Configuration
+      env:
+        Configuration: ${{ matrix.configuration }}

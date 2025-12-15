@@ -2,20 +2,28 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace 水水水果API.Models.CRM;
 
+[Table("MemberTier")]
 public partial class MemberTier
 {
-    public int? MemberTierId { get; set; }
+    [Key]
+    public int Id { get; set; }
 
     public int BrandId { get; set; }
 
+    [Column(TypeName = "datetime")]
     public DateTime CreateDate { get; set; }
 
+    [Column(TypeName = "datetime")]
     public DateTime LastUpdateDate { get; set; }
 
     public bool IsActive { get; set; }
 
+    [InverseProperty("MemberTier")]
     public virtual ICollection<Member> Members { get; set; } = new List<Member>();
 }

@@ -25,9 +25,9 @@ namespace 水水水果API.Repositories
         public IEnumerable<UserResponse> GetMember(List<int> customers)
         {
             if(!customers.Any()) throw new ArgumentException("Customer list cannot be empty", nameof(customers));
-            return _crmConnection.Members.Include(x=>x.Customer).Where(x=> customers.Contains(x.MemberId.Value)).Select(m=> new UserResponse
+            return _crmConnection.Members.Include(x=>x.Customer).Where(x=> customers.Contains(x.Id)).Select(m=> new UserResponse
             {
-                MemberId = m.MemberId,
+                MemberId = m.Id,
                 BrandId = m.BrandId,
                 Email = m.Email,
                 FirstName = m.Customer.FirstName,
@@ -44,7 +44,7 @@ namespace 水水水果API.Repositories
         {
             return [.. _crmConnection.Members.Skip((page - 1) * pageSize).Take(pageSize).Select(m=>new UserResponse
             {
-                MemberId = m.MemberId,
+                MemberId = m.Id,
                 BrandId = m.BrandId,
                 Email = m.Email,
                 FirstName = m.Customer.FirstName,
@@ -59,7 +59,7 @@ namespace 水水水果API.Repositories
 
         public Member GetMemberById(int id)
         {
-            return _crmConnection.Members.Where(x => x.MemberId == id).Include(x => x.Customer).Single();
+            return _crmConnection.Members.Where(x => x.Id == id).Include(x => x.Customer).Single();
         }
 
         public int CreateMember(UserCreate mem)
@@ -89,17 +89,16 @@ namespace 水水水果API.Repositories
                     createMem.CustomerId = _customerRepository.CreateCustomer(cust);
                 }
 
-                if (createMem.MemberId == null)
+                if (createMem.Id == 0)
                 {
-                    createMem.MemberId = _crmConnection.Members.Max(x => x.MemberId + 1);
-                    createMem.MemberId ??= 1;
+                    createMem.Id = _crmConnection.Members.Max(x => x.Id + 1);
                 }
 
                 _crmConnection.Members.Add(createMem);
                 _crmConnection.SaveChanges();
             });
 
-            return createMem.MemberId.Value;
+            return createMem.Id;
         }
 
         public void UpdateMember(UserUpdate mem)

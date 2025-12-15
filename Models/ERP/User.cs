@@ -2,42 +2,65 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace 水水水果API.Models.ERP;
 
+[Table("User")]
+[Index("UserName", Name = "UQ__User__C9F284565C1A4736", IsUnique = true)]
 public partial class User
 {
+    [Key]
     public int Id { get; set; }
 
     public int DepartmentId { get; set; }
 
     public int RoleId { get; set; }
 
+    [Required]
+    [StringLength(50)]
     public string UserName { get; set; }
 
+    [Required]
+    [StringLength(50)]
     public string PassWord { get; set; }
 
+    [Required]
+    [StringLength(100)]
     public string Email { get; set; }
 
+    [Required]
+    [StringLength(100)]
     public string Name { get; set; }
 
+    [StringLength(10)]
     public string Gender { get; set; }
 
+    [Column(TypeName = "datetime")]
     public DateTime Birthday { get; set; }
 
+    [Column(TypeName = "datetime")]
     public DateTime CreateDate { get; set; }
 
+    [Column(TypeName = "datetime")]
     public DateTime LastUpdateDate { get; set; }
 
     public bool IsActive { get; set; }
 
+    [Column(TypeName = "datetime")]
     public DateTime? LastLoginAt { get; set; }
 
+    [StringLength(20)]
     public string Provider { get; set; }
 
+    [StringLength(100)]
     public string ProviderId { get; set; }
 
+    [StringLength(100)]
     public string ProviderEmail { get; set; }
 
+    [StringLength(255)]
     public string AvatarUrl { get; set; }
 }

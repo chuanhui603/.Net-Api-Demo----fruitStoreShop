@@ -1,29 +1,29 @@
 ﻿{
    "CodeGenerationMode": 4,
-   "ContextClassName": "TWCRM_TESTContext",
+   "ContextClassName": "TWERP_TESTContext",
    "ContextNamespace": null,
    "FilterSchemas": false,
    "IncludeConnectionString": false,
+   "IrregularWords": null,
+   "MinimumProductVersion": "2.6.1248",
    "ModelNamespace": null,
    "OutputContextPath": null,
-   "OutputPath": "Models\/CRM",
+   "OutputPath": "Models\/ERP",
+   "PluralRules": null,
    "PreserveCasingWithRegex": true,
    "ProjectRootNamespace": "水水水果API",
    "Schemas": null,
    "SelectedHandlebarsLanguage": 2,
    "SelectedToBeGenerated": 0,
+   "SingularRules": null,
    "T4TemplatePath": null,
    "Tables": [
       {
-         "Name": "[dbo].[Customer]",
+         "Name": "[dbo].[Brand]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Member]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[MemberTier]",
+         "Name": "[dbo].[User]",
          "ObjectType": 0
       }
    ],
@@ -36,7 +36,7 @@
    "UseDateOnlyTimeOnly": true,
    "UseDbContextSplitting": false,
    "UseDecimalDataAnnotationForSprocResult": true,
-   "UseFluentApiOnly": true,
+   "UseFluentApiOnly": false,
    "UseHandleBars": false,
    "UseHierarchyId": false,
    "UseInflector": true,

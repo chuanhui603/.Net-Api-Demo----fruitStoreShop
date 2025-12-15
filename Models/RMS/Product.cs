@@ -2,11 +2,17 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace 水水水果API.Models.RMS;
 
+[Table("Product")]
+[Index("Code", Name = "UQ__Product__A25C5AA7B123FAB8", IsUnique = true)]
 public partial class Product
 {
+    [Key]
     public int Id { get; set; }
 
     public int CategoryId { get; set; }
@@ -15,15 +21,22 @@ public partial class Product
 
     public int StoreId { get; set; }
 
-    public DateTime Description { get; set; }
+    [Required]
+    [StringLength(255)]
+    public string Description { get; set; }
 
+    [Required]
+    [StringLength(50)]
     public string Code { get; set; }
 
+    [Column(TypeName = "decimal(18, 2)")]
     public decimal Price { get; set; }
 
-    public string CreateDate { get; set; }
+    [Column(TypeName = "datetime")]
+    public DateTime CreateDate { get; set; }
 
-    public string LastUpdateDate { get; set; }
+    [Column(TypeName = "datetime")]
+    public DateTime LastUpdateDate { get; set; }
 
     public bool IsActive { get; set; }
 }

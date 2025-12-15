@@ -35,20 +35,20 @@ namespace 水水水果API.Repositories
 
             _commonContext.CRM.ExecuteTransaction(_crmConnection, () =>
             {
-                if (createCust.CustomerId == null)
+                if (createCust.Id == 0)
                 {
 
-                    createCust.CustomerId = _crmConnection.Customers.Max(x => x.CustomerId) + 1;
-                    if  (createCust.CustomerId == null)
+                    createCust.Id = _crmConnection.Customers.Max(x => x.Id) + 1;
+                    if  (createCust.Id == 0)
                     {
-                        createCust.CustomerId = 1;
+                        createCust.Id = 1;
                     }
                 }
                 
                 _crmConnection.Customers.Add(createCust);
                 _crmConnection.SaveChanges();
             });
-            return createCust.CustomerId.Value;
+            return createCust.Id;
         }
 
         public void UpdateCustomer(Customer cust)
@@ -57,7 +57,7 @@ namespace 水水水果API.Repositories
            
             _commonContext.CRM.ExecuteTransaction(_crmConnection, () =>
             {
-                var targetCust = _crmConnection.Customers.Find(cust.CustomerId);
+                var targetCust = _crmConnection.Customers.Find(cust.Id);
                 targetCust.BirthDay = cust.BirthDay;
                 targetCust.FirstName = cust.FirstName;
                 targetCust.LastName = cust.LastName;
@@ -74,7 +74,7 @@ namespace 水水水果API.Repositories
 
 
 
-            return _crmConnection.Customers.Where(c => c.CustomerId == custId).SingleOrDefault();
+            return _crmConnection.Customers.Where(c => c.Id == custId).SingleOrDefault();
         }
     }
 }

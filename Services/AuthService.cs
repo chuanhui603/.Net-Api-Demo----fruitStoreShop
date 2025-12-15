@@ -49,7 +49,7 @@ namespace 水水水果API.Services
                     Email = user.Email,
                     FirstName = user.Customer.FirstName,
                     LastName = user.Customer.LastName,
-                    MemberId = user.MemberId,
+                    MemberId = user.Id,
                     JWTIssuer = _options.JWTIssuer,
                     JWTSignKey = _options.JWTSignKey
             });

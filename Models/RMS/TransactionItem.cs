@@ -8,19 +8,36 @@ using Microsoft.EntityFrameworkCore;
 
 namespace 水水水果API.Models.RMS;
 
-[Table("Store")]
-public partial class Store
+[Table("TransactionItem")]
+public partial class TransactionItem
 {
     [Key]
     public int Id { get; set; }
 
-    [Required]
-    [StringLength(100)]
-    public string Code { get; set; }
+    public int OrderId { get; set; }
+
+    public int ProductId { get; set; }
+
+    public int Quantity { get; set; }
 
     [Required]
     [StringLength(255)]
     public string Description { get; set; }
+
+    [Column(TypeName = "decimal(18, 2)")]
+    public decimal PriceUnitOriginal { get; set; }
+
+    [Column(TypeName = "decimal(18, 2)")]
+    public decimal PriceUnitPaid { get; set; }
+
+    [Column(TypeName = "decimal(18, 2)")]
+    public decimal SubTotalPaid { get; set; }
+
+    [Column(TypeName = "decimal(18, 2)")]
+    public decimal DiscountItemAmount { get; set; }
+
+    [Column(TypeName = "decimal(18, 2)")]
+    public decimal MileageItemAmount { get; set; }
 
     public int BrandId { get; set; }
 

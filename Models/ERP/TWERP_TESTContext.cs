@@ -23,55 +23,18 @@ public partial class TWERP_TESTContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__Brand__3214EC070334DAE7");
 
-            entity.ToTable("Brand");
-
-            entity.Property(e => e.Code)
-                .IsRequired()
-                .HasMaxLength(100);
-            entity.Property(e => e.CreateDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.Description).HasMaxLength(100);
+            entity.Property(e => e.CreateDate).HasDefaultValueSql("(getdate())");
             entity.Property(e => e.IsActive).HasDefaultValue(true);
-            entity.Property(e => e.LastUpdateDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
+            entity.Property(e => e.LastUpdateDate).HasDefaultValueSql("(getdate())");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__User__3214EC077E9F2E95");
 
-            entity.ToTable("User");
-
-            entity.HasIndex(e => e.UserName, "UQ__User__C9F284565C1A4736").IsUnique();
-
-            entity.Property(e => e.AvatarUrl).HasMaxLength(255);
-            entity.Property(e => e.Birthday).HasColumnType("datetime");
-            entity.Property(e => e.CreateDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.Email)
-                .IsRequired()
-                .HasMaxLength(100);
-            entity.Property(e => e.Gender).HasMaxLength(10);
+            entity.Property(e => e.CreateDate).HasDefaultValueSql("(getdate())");
             entity.Property(e => e.IsActive).HasDefaultValue(true);
-            entity.Property(e => e.LastLoginAt).HasColumnType("datetime");
-            entity.Property(e => e.LastUpdateDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.Name)
-                .IsRequired()
-                .HasMaxLength(100);
-            entity.Property(e => e.PassWord)
-                .IsRequired()
-                .HasMaxLength(50);
-            entity.Property(e => e.Provider).HasMaxLength(20);
-            entity.Property(e => e.ProviderEmail).HasMaxLength(100);
-            entity.Property(e => e.ProviderId).HasMaxLength(100);
-            entity.Property(e => e.UserName)
-                .IsRequired()
-                .HasMaxLength(50);
+            entity.Property(e => e.LastUpdateDate).HasDefaultValueSql("(getdate())");
         });
 
         OnModelCreatingPartial(modelBuilder);
