@@ -54,6 +54,8 @@ public partial class Member
     [StringLength(255)]
     public string AvatarUrl { get; set; }
 
+    public int? RefreshTokenId { get; set; }
+
     [ForeignKey("CustomerId")]
     [InverseProperty("Members")]
     public virtual Customer Customer { get; set; }
@@ -61,4 +63,7 @@ public partial class Member
     [ForeignKey("MemberTierId")]
     [InverseProperty("Members")]
     public virtual MemberTier MemberTier { get; set; }
+
+    [InverseProperty("Member")]
+    public virtual ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
 }

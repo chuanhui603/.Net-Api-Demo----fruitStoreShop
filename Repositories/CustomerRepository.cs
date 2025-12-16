@@ -37,12 +37,10 @@ namespace 水水水果API.Repositories
             {
                 if (createCust.Id == 0)
                 {
-
-                    createCust.Id = _crmConnection.Customers.Max(x => x.Id) + 1;
-                    if  (createCust.Id == 0)
-                    {
-                        createCust.Id = 1;
-                    }
+                    var maxId = _crmConnection.Customers.Any() 
+                        ? _crmConnection.Customers.Max(x => x.Id) 
+                        : 0;
+                    createCust.Id = maxId + 1;
                 }
                 
                 _crmConnection.Customers.Add(createCust);

@@ -1,6 +1,6 @@
 ﻿{
    "CodeGenerationMode": 4,
-   "ContextClassName": "TWERP_TESTContext",
+   "ContextClassName": "TWCRM_TESTContext",
    "ContextNamespace": null,
    "FilterSchemas": false,
    "IncludeConnectionString": false,
@@ -8,7 +8,7 @@
    "MinimumProductVersion": "2.6.1248",
    "ModelNamespace": null,
    "OutputContextPath": null,
-   "OutputPath": "Models\/ERP",
+   "OutputPath": "Models\/CRM",
    "PluralRules": null,
    "PreserveCasingWithRegex": true,
    "ProjectRootNamespace": "水水水果API",
@@ -19,11 +19,23 @@
    "T4TemplatePath": null,
    "Tables": [
       {
-         "Name": "[dbo].[Brand]",
+         "Name": "[dbo].[Customer]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[User]",
+         "Name": "[dbo].[CustomerGroup]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Member]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[MemberTier]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[RefreshToken]",
          "ObjectType": 0
       }
    ],

@@ -91,7 +91,9 @@ namespace 水水水果API.Repositories
 
                 if (createMem.Id == 0)
                 {
-                    createMem.Id = _crmConnection.Members.Max(x => x.Id + 1);
+                    int maxId = _crmConnection.Members.Any()
+                        ? _crmConnection.Members.Max(x => x.Id) : 0;
+                    createMem.Id = maxId + 1;
                 }
 
                 _crmConnection.Members.Add(createMem);
