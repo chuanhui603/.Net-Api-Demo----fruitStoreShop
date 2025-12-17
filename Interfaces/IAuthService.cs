@@ -5,5 +5,6 @@ public interface IAuthService
 {
     LoginResponseDTO Login(LoginDTO login);
     void Logout();
-    LoginResponseDTO RefreshToken(string token);
+    LoginResponseDTO RefreshToken(string refreshToken);
+    bool ValidMemberByEmail(string email);
 }

@@ -6,10 +6,10 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace 水水水果API.Models.CRM;
+namespace 水水水果API.Models.AUTH;
 
 [Table("RefreshToken")]
-[Index("TokenJti", Name = "UQ__RefreshT__2F174F9DEA4A7B9E", IsUnique = true)]
+[Index("TokenJti", Name = "UQ__RefreshT__2F174F9DC2EF5623", IsUnique = true)]
 public partial class RefreshToken
 {
     [Key]
@@ -20,7 +20,7 @@ public partial class RefreshToken
     [Unicode(false)]
     public string TokenJti { get; set; }
 
-    public int MemberId { get; set; }
+    public int UserId { get; set; }
 
     [Column(TypeName = "datetime")]
     public DateTime ExpiresAt { get; set; }
@@ -33,7 +33,7 @@ public partial class RefreshToken
     [Column(TypeName = "datetime")]
     public DateTime? RevokedAt { get; set; }
 
-    [ForeignKey("MemberId")]
+    [ForeignKey("UserId")]
     [InverseProperty("RefreshTokens")]
-    public virtual Member Member { get; set; }
+    public virtual User User { get; set; }
 }

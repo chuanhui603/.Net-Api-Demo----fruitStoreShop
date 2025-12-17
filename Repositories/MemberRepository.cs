@@ -29,14 +29,12 @@ namespace 水水水果API.Repositories
             {
                 MemberId = m.Id,
                 BrandId = m.BrandId,
-                Email = m.Email,
                 FirstName = m.Customer.FirstName,
                 LastName = m.Customer.LastName,
                 Gender = m.Customer.Gender,
                 Phone = m.Customer.Phone,
                 BirthDay = m.Customer.BirthDay,
                 IsActive = m.IsActive,
-                LastLoginAt = m.LastLoginAt,
             });
         }
 
@@ -46,14 +44,12 @@ namespace 水水水果API.Repositories
             {
                 MemberId = m.Id,
                 BrandId = m.BrandId,
-                Email = m.Email,
                 FirstName = m.Customer.FirstName,
                 LastName = m.Customer.LastName,
                 Gender = m.Customer.Gender,
                 Phone = m.Customer.Phone,
                 BirthDay = m.Customer.BirthDay,
                 IsActive = m.IsActive,
-                LastLoginAt = m.LastLoginAt,
             })];
         }
 
@@ -76,7 +72,6 @@ namespace 水水水果API.Repositories
             var createMem = MappingHelper.ModelMapping<Member>(mem);
             createMem.CreateDate = dateNow;
             createMem.LastUpdateDate = dateNow;
-            createMem.LastLoginAt = dateNow;
             createMem.IsActive = true;
 
             //新增客戶有BUG需要修
@@ -115,9 +110,7 @@ namespace 水水水果API.Repositories
             {
                 _customerRepository.UpdateCustomer(updateCust);
                 targetMember.MemberTierId = mem.MemberTierId;
-                targetMember.Email = mem.Email;
                 targetMember.IsActive = mem.IsActive;
-                targetMember.LastLoginAt = mem.LastLoginAt;
                 targetMember.LastUpdateDate = currentDate;
 
                 _crmConnection.SaveChanges();
@@ -132,20 +125,6 @@ namespace 水水水果API.Repositories
                 _crmConnection.Members.Update(mem);
                 _crmConnection.SaveChanges();
             });
-        }
-
-        public Member GetMemberByEmail(string email)
-        {
-            return _crmConnection.Members.Where(x => x.Email == email)
-               .Include(x => x.Customer)
-               .SingleOrDefault();
-        }
-
-        public Member GetMemberByLogin(string email, string password)
-        {
-            return _crmConnection.Members.Where(x => x.Email == email && x.PassWord == password)
-                .Include(x => x.Customer)
-                .SingleOrDefault();
         }
     }
 }

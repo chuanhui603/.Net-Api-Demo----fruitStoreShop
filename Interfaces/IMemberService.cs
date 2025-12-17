@@ -10,6 +10,5 @@ namespace 水水水果API.Interfaces
         void DeleteCustomer(int id);
         UserResponse GetMemberById(int id);
         void UpdateMember(UserUpdate member);
-        bool ValidMemberByEmail(string email);
     }
 }

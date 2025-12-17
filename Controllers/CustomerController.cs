@@ -32,24 +32,7 @@ namespace 水水水果.Controllers
             }
         }
 
-        [AllowAnonymous]
-        [HttpGet("exists")]
-        public IActionResult Exists([FromQuery] string email) 
-        {
-            try
-            {
-                var member = _memberService.ValidMemberByEmail(email);
-                if (member == false)
-                {
-                    return NotFound(false);
-                }
-                return Ok(true);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Internal server error: " + ex.Message);
-            }
-        }
+  
 
 
         // GET api/<CustomerController>/5

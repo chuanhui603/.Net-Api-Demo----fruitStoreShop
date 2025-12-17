@@ -47,8 +47,6 @@ namespace 水水水果API.Services
 
             var token = _jwtHelper.GenerateToken(new JwtInfo{
                     Email = user.Email,
-                    FirstName = user.Customer.FirstName,
-                    LastName = user.Customer.LastName,
                     MemberId = user.Id,
                     JWTIssuer = _options.JWTIssuer,
                     JWTSignKey = _options.JWTSignKey
@@ -56,14 +54,15 @@ namespace 水水水果API.Services
 
             return new LoginResponseDTO
             {
-                Token = token,
+                AccessToken = token,
                 Expiration = DateTime.Now.AddMinutes(60)
             };
         }
 
-        private Member GetUser(LoginDTO login)
+        private User GetUser(LoginDTO login)
         {
-            return _memberRepository.GetMemberByLogin(login.Email, login.Password);
+            //預計實作
+            return null;
         }
 
         public void Logout()
@@ -86,10 +85,15 @@ namespace 水水水果API.Services
             }
         }
 
-        public LoginResponseDTO RefreshToken(string token)
+        public LoginResponseDTO RefreshToken(string refreshToken)
         {
             // 將來實作權杖重新整理功能
             return null;
+        }
+
+        public bool ValidMemberByEmail(string email)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -44,4 +44,42 @@ public class AuthController : ControllerBase
             return StatusCode(500, "Internal server error: " + ex.Message);
         }
     }
+
+    [AllowAnonymous]
+    [HttpGet("exists")]
+    public IActionResult Exists([FromQuery] string email)
+    {
+        try
+        {
+            var member = _authService.ValidMemberByEmail(email);
+            if (member == false)
+            {
+                return NotFound(false);
+            }
+            return Ok(true);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "Internal server error: " + ex.Message);
+        }
+    }
+
+    [HttpPost("refresh")]
+    public IActionResult RefreshToken(string refreshToken)
+    {
+        try
+        {
+            var newRefreshToken = _authService.RefreshToken(refreshToken);
+            if (newRefreshToken == null)
+            {
+                return NotFound(false);
+            }
+            return Ok(newRefreshToken);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "Internal server error: " + ex.Message);
+        }
+    }
 }
+

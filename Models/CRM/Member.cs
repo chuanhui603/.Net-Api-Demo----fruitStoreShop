@@ -23,13 +23,7 @@ public partial class Member
     [Column("StoreID")]
     public int StoreId { get; set; }
 
-    [Required]
-    [StringLength(100)]
-    public string Email { get; set; }
-
-    [Required]
-    [StringLength(50)]
-    public string PassWord { get; set; }
+    public int UserId { get; set; }
 
     [Column(TypeName = "datetime")]
     public DateTime CreateDate { get; set; }
@@ -39,22 +33,8 @@ public partial class Member
 
     public bool IsActive { get; set; }
 
-    [Column(TypeName = "datetime")]
-    public DateTime? LastLoginAt { get; set; }
-
-    [StringLength(20)]
-    public string Provider { get; set; }
-
-    [StringLength(100)]
-    public string ProviderId { get; set; }
-
-    [StringLength(100)]
-    public string ProviderEmail { get; set; }
-
     [StringLength(255)]
     public string AvatarUrl { get; set; }
-
-    public int? RefreshTokenId { get; set; }
 
     [ForeignKey("CustomerId")]
     [InverseProperty("Members")]
@@ -63,7 +43,4 @@ public partial class Member
     [ForeignKey("MemberTierId")]
     [InverseProperty("Members")]
     public virtual MemberTier MemberTier { get; set; }
-
-    [InverseProperty("Member")]
-    public virtual ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
 }

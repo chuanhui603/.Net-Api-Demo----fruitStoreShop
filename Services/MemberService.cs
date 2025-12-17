@@ -22,7 +22,8 @@
 
         public void CreateMember(UserCreate member)
         {
-            Member existmem = _memberRepository.GetMemberByEmail(member.Email);
+            //預計實作
+            Member existmem = null;
 
             if (existmem != null) throw new Exception("建立客戶失敗，帳號已重複");
 
@@ -41,25 +42,17 @@
             {
                 FirstName = m.Customer.FirstName,
                 LastName = m.Customer.LastName,
-                Email = m.Email,
                 Phone = m.Customer.Phone,
                 BirthDay = m.Customer.BirthDay,
                 BrandId = m.BrandId,
                 IsActive = m.IsActive,
                 Gender = m.Customer.Gender,
-                LastLoginAt = m.LastLoginAt,
-                PassWord = m.PassWord,
             };
         }
         public void DeleteCustomer(int id)
         {
             Member member = _memberRepository.GetMemberById(id) ?? throw new ArgumentNullException($"Member is not exist. ID: {id}");
             _memberRepository.DeleteMember(member);
-        }
-
-        public bool ValidMemberByEmail(string email)
-        {
-            return _memberRepository.GetMemberByEmail(email) != null;
         }
     }
 }

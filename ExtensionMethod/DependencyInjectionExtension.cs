@@ -12,11 +12,13 @@ public static class DependencyInjectionExtension
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<ILinePayService, LinePayService>();
 
+
         // 註冊儲存庫
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IMemberRepository, MemberRepository>();
         services.AddScoped<ICouponRepository, CouponRepository>();
         services.AddScoped<ICustomerRepository, CustomerRepository>();
+        services.AddScoped<IAuthRepository, AuthRepository>();
 
         // 註冊 Redis 相關服務
         services.AddScoped<IRedisService, RedisService>(); 
