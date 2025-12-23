@@ -9,6 +9,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<IMemberService, MemberService>();
         services.AddScoped<ICouponService, CouponService>();
+        services.AddScoped<ICustomerService, CustomerService>();
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<ILinePayService, LinePayService>();
 

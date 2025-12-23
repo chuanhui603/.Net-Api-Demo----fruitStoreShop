@@ -4,9 +4,13 @@ using User = 水水水果API.Models.AUTH.User;
 
 namespace 水水水果API.Services
 {
+    /// <summary>
+    /// AuthService 負責處理認證相關的業務邏輯，包含 User 的 CRUD 操作
+    /// </summary>
     public class AuthService : IAuthService
     {
         private readonly IMemberRepository _memberRepository;
+        private readonly IAuthRepository _authRepository;
         private readonly ILogger<AuthService> _logger;
         private readonly JWTModel _options;
         private readonly JWTHelper _jwtHelper;
@@ -17,11 +21,13 @@ namespace 水水水果API.Services
             ILogger<AuthService> logger,
             JWTHelper jwt,
             IMemberRepository memberRepository,
+            IAuthRepository authRepository,
             IHttpContextAccessor httpcontext,
             IRedisService redisService,
             IOptions<JWTModel> options)
         {
             _memberRepository = memberRepository;
+            _authRepository = authRepository;
             _logger = logger;
             _jwtHelper = jwt;
             _httpcontext = httpcontext;
@@ -92,6 +98,34 @@ namespace 水水水果API.Services
         public bool ValidMemberByEmail(string email)
         {
             throw new NotImplementedException();
+        }
+
+        public User GetUserById(int userId)
+        {
+            try
+            {
+                return _authRepository.GetUserById(userId);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public int UpsertUser(UserUpsert userDto)
+        {
+            if (userDto.UserId.HasValue && userDto.UserId.Value > 0)
+            {
+                var existingUser = GetUserById(userDto.UserId.Value);
+                if (existingUser != null)
+                {
+                    _logger.LogInformation("Updating existing user with ID: {UserId}", userDto.UserId);
+                    return _authRepository.UpsertUser(userDto);
+                }
+            }
+
+            _logger.LogInformation("Creating new user");
+            return _authRepository.UpsertUser(userDto);
         }
     }
 }

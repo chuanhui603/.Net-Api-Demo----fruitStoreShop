@@ -1,4 +1,5 @@
-﻿using 水水水果API.Models.DTO.Login;
+﻿using 水水水果API.Models.DTO;
+using 水水水果API.Models.DTO.Login;
 
 namespace 水水水果API.Interfaces;
 public interface IAuthService
@@ -7,4 +8,6 @@ public interface IAuthService
     void Logout();
     LoginResponseDTO RefreshToken(string refreshToken);
     bool ValidMemberByEmail(string email);
+    User GetUserById(int userId);
+    int UpsertUser(UserUpsert userDto);
 }

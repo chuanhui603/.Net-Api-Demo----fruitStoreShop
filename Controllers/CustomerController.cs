@@ -52,12 +52,12 @@ namespace 水水水果.Controllers
         }
 
         // PUT api/<CustomerController>
-        [HttpPost("Upsert")]
-        public IActionResult Put([FromBody] MemberUpsert member)
+        [HttpPut("MemberUpsert")]
+        public IActionResult MemberUpsert([FromBody] MemberUpsert member)
         {
             try
             {
-                _memberService.UpdateMember(member);
+                _memberService.RegisterMember(member);
                 return NoContent();
             }
             catch (Exception ex)
@@ -68,7 +68,7 @@ namespace 水水水果.Controllers
 
         // DELETE api/<CustomerController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult MemberDelete(int id)
         {
             try
             {
