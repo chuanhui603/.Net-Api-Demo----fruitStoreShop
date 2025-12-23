@@ -15,22 +15,11 @@ public partial class TWERP_TESTContext : DbContext
 
     public virtual DbSet<Brand> Brands { get; set; }
 
-    public virtual DbSet<User> Users { get; set; }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Brand>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Brand__3214EC070334DAE7");
-
-            entity.Property(e => e.CreateDate).HasDefaultValueSql("(getdate())");
-            entity.Property(e => e.IsActive).HasDefaultValue(true);
-            entity.Property(e => e.LastUpdateDate).HasDefaultValueSql("(getdate())");
-        });
-
-        modelBuilder.Entity<User>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__User__3214EC077E9F2E95");
+            entity.HasKey(e => e.Id).HasName("PK__Brand__3214EC07B81D7F92");
 
             entity.Property(e => e.CreateDate).HasDefaultValueSql("(getdate())");
             entity.Property(e => e.IsActive).HasDefaultValue(true);

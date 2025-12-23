@@ -85,6 +85,10 @@ try
         options => options.UseSqlServer(sqlContext.ERP.ConnectString)
     );
 
+    builder.Services.AddDbContext<TWAUTH_TESTContext>(
+       options => options.UseSqlServer(sqlContext.Auth.ConnectString)
+   );
+
     var app = builder.Build();
 
     if (app.Environment.IsDevelopment())

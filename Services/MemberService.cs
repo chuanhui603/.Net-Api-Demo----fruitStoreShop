@@ -10,35 +10,25 @@
             _logger = logger;
             _memberRepository = memberRepository;
         }
-        public IEnumerable<UserResponse> GetMembers(List<int> customers)
+        public IEnumerable<MemberResponse> GetMembers(List<int> customers)
         {
             return _memberRepository.GetMember(customers);
         }
 
-        public IEnumerable<UserResponse> GetMembersByPage(int page, int pageSize)
+        public IEnumerable<MemberResponse> GetMembersByPage(int page, int pageSize)
         {
             return _memberRepository.GetMemberByPage(page, pageSize);
-        }
+        } 
 
-        public void CreateMember(UserCreate member)
-        {
-            //預計實作
-            Member existmem = null;
-
-            if (existmem != null) throw new Exception("建立客戶失敗，帳號已重複");
-
-            _memberRepository.CreateMember(member);
-        }
-
-        public void UpdateMember(UserUpdate member)
+        public void UpdateMember(MemberUpsert member)
         {
             _memberRepository.UpsertMember(member);
         }
 
-        public UserResponse GetMemberById(int id)
+        public MemberResponse GetMemberById(int id)
         {
             var m = _memberRepository.GetMemberById(id);
-            return new UserResponse
+            return new MemberResponse
             {
                 FirstName = m.Customer.FirstName,
                 LastName = m.Customer.LastName,

@@ -32,9 +32,6 @@ namespace 水水水果.Controllers
             }
         }
 
-  
-
-
         // GET api/<CustomerController>/5
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
@@ -54,26 +51,9 @@ namespace 水水水果.Controllers
             }
         }
 
-        // POST api/<CustomerController>
-        [HttpPost("Create")]
-        [AllowAnonymous]
-        public IActionResult Post([FromBody] UserCreate member)
-        {
-            try
-            {
-                _logger.LogInformation("member: {member}", member);
-                _memberService.CreateMember(member);
-                return Created();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Internal server error: " + ex.Message);
-            }
-        }
-
         // PUT api/<CustomerController>
-        [HttpPost("Update")]
-        public IActionResult Put([FromBody] UserUpdate member)
+        [HttpPost("Upsert")]
+        public IActionResult Put([FromBody] MemberUpsert member)
         {
             try
             {

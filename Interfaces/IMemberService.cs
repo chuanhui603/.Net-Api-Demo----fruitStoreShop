@@ -4,11 +4,10 @@ namespace 水水水果API.Interfaces
 {
     public interface IMemberService
     {
-        IEnumerable<UserResponse> GetMembers(List<int> customers);
-        IEnumerable<UserResponse> GetMembersByPage(int page, int pageSize);
-        void CreateMember(UserCreate member);
+        IEnumerable<MemberResponse> GetMembers(List<int> customers);
+        IEnumerable<MemberResponse> GetMembersByPage(int page, int pageSize);
         void DeleteCustomer(int id);
-        UserResponse GetMemberById(int id);
-        void UpdateMember(UserUpdate member);
+        MemberResponse GetMemberById(int id);
+        void UpdateMember(MemberUpsert member);
     }
 }

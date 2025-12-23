@@ -1,7 +1,5 @@
 ﻿using FrameWork.Helper.Models;
-using FrameWork.Helper.Transfer;
-using 水水水果API.Models.DTO;
-using 水水水果API.Models.DTO.Login;
+using User = 水水水果API.Models.AUTH.User;
 
 
 namespace 水水水果API.Services

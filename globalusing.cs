@@ -3,6 +3,7 @@ global using 水水水果API.Models;
 global using 水水水果API.Models.RMS;
 global using 水水水果API.Models.ERP;
 global using 水水水果API.Models.CRM;
+global using 水水水果API.Models.AUTH;
 global using 水水水果API.Interfaces;
 global using 水水水果API.Services;
 global using 水水水果API.Repositories;

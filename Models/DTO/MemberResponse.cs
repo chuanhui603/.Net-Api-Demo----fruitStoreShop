@@ -2,7 +2,7 @@
 
 namespace 水水水果API.Models.DTO
 {
-    public record UserResponse
+    public record MemberResponse
     {
         public int? MemberId { get; set; }
 
