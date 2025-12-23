@@ -7,9 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="FakesAssemblies\**" />
     <Compile Remove="logs\**" />
+    <Content Remove="FakesAssemblies\**" />
     <Content Remove="logs\**" />
+    <EmbeddedResource Remove="FakesAssemblies\**" />
     <EmbeddedResource Remove="logs\**" />
+    <None Remove="FakesAssemblies\**" />
     <None Remove="logs\**" />
   </ItemGroup>
 
@@ -26,6 +30,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.14" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
     <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.14.0" />
+    <PackageReference Include="Microsoft.QualityTools.Testing.Fakes" Version="17.5.0-beta.23060.1" />
     <PackageReference Include="MySql.Data" Version="9.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
@@ -35,11 +40,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <AdditionalDesignTimeBuildInput Remove="FakesAssemblies\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="FrameWork_Helper">
-      <HintPath>..\FrameWork_Helper\bin\Debug\net8.0\FrameWork_Helper.dll</HintPath>
+      <HintPath>..\FrameWork_CommonFrameWork\bin\Debug\net8.0\FrameWork_Helper.dll</HintPath>
     </Reference>
     <Reference Include="Framework_SqlCommon">
-      <HintPath>..\Framework_SqlCommon\bin\Debug\net8.0\Framework_SqlCommon.dll</HintPath>
+      <HintPath>..\SqlCommonLib\bin\Debug\net8.0\Framework_SqlCommon.dll</HintPath>
     </Reference>
   </ItemGroup>
 

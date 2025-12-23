@@ -32,7 +32,7 @@
 
         public void UpdateMember(UserUpdate member)
         {
-            _memberRepository.UpdateMember(member);
+            _memberRepository.UpsertMember(member);
         }
 
         public UserResponse GetMemberById(int id)

@@ -1,6 +1,7 @@
 ﻿using Framework.SqlCommon.SQLHelper;
 using FrameWork.Helper.Transfer;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using System.Data.Common;
 
 namespace 水水水果API.Repositories
@@ -13,7 +14,7 @@ namespace 水水水果API.Repositories
         private readonly ICustomerRepository _customerRepository;
         private readonly ILogger<CustomerRepository> _logger;
 
-        public MemberRepository(ILogger<CustomerRepository> logger,TWCRM_TESTContext crmConnection, SqlCommonContext commonContext, ICustomerRepository customerRepository)
+        public MemberRepository(ILogger<CustomerRepository> logger, TWCRM_TESTContext crmConnection, SqlCommonContext commonContext, ICustomerRepository customerRepository)
         {
             _crmConnection = crmConnection;
             _commonContext = commonContext;
@@ -24,8 +25,8 @@ namespace 水水水果API.Repositories
 
         public IEnumerable<UserResponse> GetMember(List<int> customers)
         {
-            if(!customers.Any()) throw new ArgumentException("Customer list cannot be empty", nameof(customers));
-            return _crmConnection.Members.Include(x=>x.Customer).Where(x=> customers.Contains(x.Id)).Select(m=> new UserResponse
+            if (customers.Count == 0) throw new ArgumentException("Customer list cannot be empty", nameof(customers));
+            return _crmConnection.Members.Include(x => x.Customer).Where(x => customers.Contains(x.Id)).AsNoTracking().Select(m => new UserResponse
             {
                 MemberId = m.Id,
                 BrandId = m.BrandId,
@@ -40,7 +41,7 @@ namespace 水水水果API.Repositories
 
         public IEnumerable<UserResponse> GetMemberByPage(int page, int pageSize)
         {
-            return [.. _crmConnection.Members.Skip((page - 1) * pageSize).Take(pageSize).Select(m=>new UserResponse
+            return [.. _crmConnection.Members.Skip((page - 1) * pageSize).Take(pageSize).AsNoTracking().Select(m=>new UserResponse
             {
                 MemberId = m.Id,
                 BrandId = m.BrandId,
@@ -55,74 +56,64 @@ namespace 水水水果API.Repositories
 
         public Member GetMemberById(int id)
         {
-            return _crmConnection.Members.Where(x => x.Id == id).Include(x => x.Customer).Single();
+            return _crmConnection.Members.Where(x => x.Id == id).Include(x => x.Customer).AsNoTracking().Single();
         }
 
-        public int CreateMember(UserCreate mem)
+        public int UpsertMember(UserUpdate mem)
         {
-
             DateTime dateNow = _commonContext.CRM.GetDbDate(_crmConnect, _crmConnection.Database.CurrentTransaction);
-
-            Customer existCust = new();
-            if (mem.CustomerId != null)
-            {
-                existCust = _customerRepository.GetCustomerById(mem.CustomerId.Value);
-            }
-
             var createMem = MappingHelper.ModelMapping<Member>(mem);
-            createMem.CreateDate = dateNow;
-            createMem.LastUpdateDate = dateNow;
-            createMem.IsActive = true;
 
-            //新增客戶有BUG需要修
+            int memId = 0;
             _commonContext.CRM.ExecuteTransaction(_crmConnection, () =>
             {
-                if (existCust == null || mem.CustomerId == null)
+                var targetMember = _crmConnection.Members.Find(mem.MemberId);
+
+                if (targetMember == null)
                 {
-             
-                    Customer cust = MappingHelper.ModelMapping<Customer>(mem);
-                    createMem.CustomerId = _customerRepository.CreateCustomer(cust);
-                }
+                    if (mem.CustomerId.HasValue)
+                    {
+                        var existCust = _customerRepository.GetCustomerById(mem.CustomerId.Value);
+                        if (existCust == null)
+                        {
+                            CustomerUpsert cust = MappingHelper.ModelMapping<CustomerUpsert>(mem);
+                            createMem.CustomerId = _customerRepository.UpsertCustomer(cust);
+                        }
+                        else
+                        {
+                            createMem.CustomerId = existCust.Id;
+                        }
+                    }
 
-                if (createMem.Id == 0)
+                    createMem.CreateDate = dateNow;
+                    createMem.LastUpdateDate = dateNow;
+                    createMem.IsActive = true;
+
+                    _crmConnection.Members.Add(createMem); 
+                    _crmConnection.SaveChanges();
+                    memId = createMem.Id;
+                }
+                else
                 {
-                    int maxId = _crmConnection.Members.Any()
-                        ? _crmConnection.Members.Max(x => x.Id) : 0;
-                    createMem.Id = maxId + 1;
+                    _crmConnection.Entry(targetMember).CurrentValues.SetValues(mem);
+
+                    _crmConnection.Entry(targetMember).Property(x => x.CreateDate).IsModified = false;
+                    targetMember.LastUpdateDate = dateNow;
+
+                    _crmConnection.SaveChanges();
+                    memId = targetMember.Id;
                 }
-
-                _crmConnection.Members.Add(createMem);
-                _crmConnection.SaveChanges();
             });
-
-            return createMem.Id;
-        }
-
-        public void UpdateMember(UserUpdate mem)
-        {
-            var targetMember = _crmConnection.Members.Find(mem.MemberId);
-            DateTime currentDate = _commonContext.CRM.GetDbDate(_crmConnect, _crmConnection.Database.CurrentTransaction);
-            Customer updateCust = MappingHelper.ModelMapping<Customer>(mem);
-            if(targetMember == null)
-                throw new ArgumentException($"Member with ID {mem.MemberId} not found.");
-
-            _commonContext.CRM.ExecuteTransaction(_crmConnection, () =>
-            {
-                _customerRepository.UpdateCustomer(updateCust);
-                targetMember.MemberTierId = mem.MemberTierId;
-                targetMember.IsActive = mem.IsActive;
-                targetMember.LastUpdateDate = currentDate;
-
-                _crmConnection.SaveChanges();
-            });
+            return memId;
         }
 
         public void DeleteMember(Member mem)
         {
             _commonContext.CRM.ExecuteTransaction(_crmConnection, () =>
             {
-                mem.IsActive = false;
-                _crmConnection.Members.Update(mem);
+                var targetMember = _crmConnection.Members.Find(mem.Id) ?? throw new ArgumentException($"Member with ID {mem.Id} not found.");
+                targetMember.IsActive = false;
+
                 _crmConnection.SaveChanges();
             });
         }
