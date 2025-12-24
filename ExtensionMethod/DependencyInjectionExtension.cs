@@ -1,4 +1,6 @@
 
+using Framework.SqlCommon.SQLHelper;
+
 namespace 水水水果API.ExtensionMethod;
 public static class DependencyInjectionExtension
 {
@@ -13,6 +15,10 @@ public static class DependencyInjectionExtension
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<ILinePayService, LinePayService>();
 
+        // 註冊跨域服務
+        services.AddScoped<IMemberApplicationService, MemberApplicationService>();
+        services.AddScoped<ISqlHelperFactory>(_ =>
+      new SqlHelperFactory(configuration.GetValue<string>("SqlConnection:DefaultConnection")));
 
         // 註冊儲存庫
         services.AddScoped<IProductRepository, ProductRepository>();
@@ -22,7 +28,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IAuthRepository, AuthRepository>();
 
         // 註冊 Redis 相關服務
-        services.AddScoped<IRedisService, RedisService>(); 
+        services.AddScoped<IRedisService, RedisService>();
 
         // 註冊輔助類別
         services.AddSingleton<JWTHelper>();

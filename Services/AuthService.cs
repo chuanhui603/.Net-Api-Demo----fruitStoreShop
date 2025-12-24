@@ -1,4 +1,5 @@
 ﻿using FrameWork.Helper.Models;
+using 水水水果API.Models.DTO;
 using User = 水水水果API.Models.AUTH.User;
 
 
@@ -42,18 +43,19 @@ namespace 水水水果API.Services
             if (user == null) throw new ArgumentNullException("使用者不存在，請檢察Email和密碼");
 
             _logger.LogInformation("{user}", user);
-            var userEmail = user.Email.ToString();
+            var userEmail = user.Email;
 
             if (_redisService.IsUserLoggedOut(userEmail))
             {
                 _redisService.RemoveUserFromLogoutList(userEmail);
             }
 
-            var token = _jwtHelper.GenerateToken(new JwtInfo{
-                    Email = user.Email,
-                    MemberId = user.Id,
-                    JWTIssuer = _options.JWTIssuer,
-                    JWTSignKey = _options.JWTSignKey
+            var token = _jwtHelper.GenerateToken(new JwtInfo
+            {
+                Email = user.Email,
+                MemberId = user.Id,
+                JWTIssuer = _options.JWTIssuer,
+                JWTSignKey = _options.JWTSignKey
             });
 
             return new LoginResponseDTO
@@ -65,8 +67,7 @@ namespace 水水水果API.Services
 
         private User GetUser(LoginDTO login)
         {
-            //預計實作
-            return null;
+            return _authRepository.GetUserByLogin(login);
         }
 
         public void Logout()
@@ -97,7 +98,7 @@ namespace 水水水果API.Services
 
         public bool ValidMemberByEmail(string email)
         {
-            throw new NotImplementedException();
+           return _authRepository.ValidUserByEmail(email);
         }
 
         public User GetUserById(int userId)
@@ -112,20 +113,40 @@ namespace 水水水果API.Services
             }
         }
 
-        public int UpsertUser(UserUpsert userDto)
+        public int CreateUser(UserCreate userCreate)
         {
-            if (userDto.UserId.HasValue && userDto.UserId.Value > 0)
+            _logger.LogInformation("Creating new user");
+            return _authRepository.CreateUser(new User()
             {
-                var existingUser = GetUserById(userDto.UserId.Value);
-                if (existingUser != null)
-                {
-                    _logger.LogInformation("Updating existing user with ID: {UserId}", userDto.UserId);
-                    return _authRepository.UpsertUser(userDto);
-                }
+                Email = userCreate.Email,
+                PassWord = userCreate.PassWord,
+                Provider = userCreate.Provider,
+                ProviderEmail = userCreate.ProviderEmail,
+                ProviderId = userCreate.ProviderId,
+                IsActive = userCreate.IsActive,
+            });
+        }
+
+        public int UpdateUser(UserUpdate userUpdate)
+        {
+            var existingUser = GetUserById(userUpdate.UserId);
+            if (existingUser == null)
+            {
+                throw new ArgumentException($"User with ID {userUpdate.UserId} not found.");
             }
 
-            _logger.LogInformation("Creating new user");
-            return _authRepository.UpsertUser(userDto);
+            _logger.LogInformation("Updating existing user with ID: {UserId}", userUpdate.UserId);
+            return _authRepository.UpdateUser(new User()
+            {
+                Id = userUpdate.UserId,
+                Email = userUpdate.Email,
+                PassWord = userUpdate.PassWord,
+                Provider = userUpdate.Provider,
+                ProviderEmail = userUpdate.ProviderEmail,
+                ProviderId = userUpdate.ProviderId,
+                IsActive = userUpdate.IsActive,
+
+            });
         }
     }
 }

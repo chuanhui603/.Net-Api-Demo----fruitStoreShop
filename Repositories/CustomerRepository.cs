@@ -1,11 +1,8 @@
 ﻿
 using Framework.SqlCommon.SQLHelper;
-using FrameWork.Helper.Transfer;
-using K4os.Compression.LZ4.Internal;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
-using 水水水果.Controllers;
-using 水水水果API.Interfaces;
+
 
 namespace 水水水果API.Repositories
 {
@@ -25,45 +22,42 @@ namespace 水水水果API.Repositories
 
         }
 
-        public int UpsertCustomer(CustomerUpsert cust)
+        public int CreateCustomer(Customer cust)
         {
             DateTime dateNow = _commonContext.CRM.GetDbDate(_crmConnect, _crmConnection.Database.CurrentTransaction);
-            var targetCustomer = _crmConnection.Customers.Find(cust.Id);
+            cust.CreateDate = dateNow;
+            cust.LastUpdateDate = dateNow;
 
-            int custId = 0;
-            _commonContext.CRM.ExecuteTransaction(_crmConnection, () =>
-            {
-                if (targetCustomer == null)
-                {
-                    var newCustomer = new Customer();
+            _crmConnection.Customers.Add(cust);
+            _crmConnection.SaveChanges();
 
-                    _crmConnection.Entry(newCustomer).CurrentValues.SetValues(cust);
+            return cust.Id;
+        }
 
-                    newCustomer.CreateDate = dateNow;
-                    newCustomer.LastUpdateDate = dateNow;
+        public int UpdateCustomer(Customer cust)
+        {
+            DateTime dateNow = _commonContext.CRM.GetDbDate(_crmConnect, _crmConnection.Database.CurrentTransaction);
+            var targetCustomer = _crmConnection.Customers.Find(cust.Id)
+                ?? throw new ArgumentException($"Customer with ID {cust.Id} not found.");
 
-                    _crmConnection.Customers.Add(newCustomer);
-                    _crmConnection.SaveChanges();
-                    custId = newCustomer.Id;
-                }
-                else
-                {
-                    _crmConnection.Entry(targetCustomer).CurrentValues.SetValues(cust);
+            targetCustomer.BrandId = cust.BrandId;
+            targetCustomer.FirstName = cust.FirstName;
+            targetCustomer.LastName = cust.LastName;
+            targetCustomer.Gender = cust.Gender;
+            targetCustomer.BirthDay = cust.BirthDay;
+            targetCustomer.Phone = cust.Phone;
 
-                    _crmConnection.Entry(targetCustomer).Property(x => x.CreateDate).IsModified = false;
-                    targetCustomer.LastUpdateDate = dateNow;
+            _crmConnection.Entry(targetCustomer).Property(x => x.CreateDate).IsModified = false;
+            targetCustomer.LastUpdateDate = dateNow;
 
-                    _crmConnection.SaveChanges();
-                    custId = targetCustomer.Id;
-                }
-            });
+            _crmConnection.SaveChanges();
 
-            return custId;
+            return targetCustomer.Id;
         }
 
         public Customer GetCustomerById(int custId)
         {
-            return _crmConnection.Customers.Where(c => c.Id == custId).AsNoTracking().SingleOrDefault();
+            return _crmConnection.Customers.AsNoTracking().SingleOrDefault(c => c.Id == custId);
         }
     }
 }

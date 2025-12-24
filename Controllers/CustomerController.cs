@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Authorization;
+using 水水水果API.Models.DTO;
 
 namespace 水水水果.Controllers
 {
@@ -10,11 +12,19 @@ namespace 水水水果.Controllers
     {
         private readonly ILogger<CustomerController> _logger;
         private readonly IMemberService _memberService;
+        private readonly IAuthService _authService;
+        private readonly IMemberApplicationService _memberRegistrationOrchestrator;
 
-        public CustomerController(ILogger<CustomerController> logger, IMemberService memberService)
+        public CustomerController(
+            ILogger<CustomerController> logger,
+            IMemberService memberService,
+             IAuthService authService,
+            IMemberApplicationService memberRegistrationOrchestrator)
         {
             _logger = logger;
             _memberService = memberService;
+            _authService = authService;
+            _memberRegistrationOrchestrator = memberRegistrationOrchestrator;
         }
 
         // GET: api/<CustomerController>/Info
@@ -51,17 +61,43 @@ namespace 水水水果.Controllers
             }
         }
 
-        // PUT api/<CustomerController>
-        [HttpPut("MemberUpsert")]
-        public IActionResult MemberUpsert([FromBody] MemberUpsert member)
+        [AllowAnonymous]
+        [HttpPost("Member")]
+        public IActionResult CreateMember([FromBody] MemberCreate memberCreate)
         {
             try
             {
-                _memberService.RegisterMember(member);
-                return NoContent();
+                var memberId = _memberRegistrationOrchestrator.RegisterMember(memberCreate);
+
+            
+                return Ok(new { MemberId = memberId });
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "會員註冊失敗");
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+        }
+
+        [HttpPut("Member")]
+        public IActionResult UpdateMember([FromBody] MemberUpdate memberUpdate)
+        {
+            try
+            {
+                var memberId = _memberService.UpdateMember(memberUpdate);
+                return Ok(new { MemberId = memberId });
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "會員更新失敗");
                 return StatusCode(500, "Internal server error: " + ex.Message);
             }
         }
@@ -72,7 +108,7 @@ namespace 水水水果.Controllers
         {
             try
             {
-                _memberService.DeleteCustomer(id);
+                _memberService.DeleteMember(id);
                 return NoContent();
             }
             catch (Exception ex)

@@ -74,19 +74,27 @@ try
 
 
     builder.Services.AddDbContext<TWRMS_TESTContext>(
-        options => options.UseSqlServer(sqlContext.RMS.ConnectString)
+        options => options.UseSqlServer(
+            sqlContext.RMS.ConnectString,
+            sqlOptions => sqlOptions.EnableRetryOnFailure())
      );
 
     builder.Services.AddDbContext<TWCRM_TESTContext>(
-        options => options.UseSqlServer(sqlContext.CRM.ConnectString)
+        options => options.UseSqlServer(
+            sqlContext.CRM.ConnectString,
+            sqlOptions => sqlOptions.EnableRetryOnFailure())
      );
 
     builder.Services.AddDbContext<TWERP_TESTContext>(
-        options => options.UseSqlServer(sqlContext.ERP.ConnectString)
+        options => options.UseSqlServer(
+            sqlContext.ERP.ConnectString,
+            sqlOptions => sqlOptions.EnableRetryOnFailure())
     );
 
     builder.Services.AddDbContext<TWAUTH_TESTContext>(
-       options => options.UseSqlServer(sqlContext.Auth.ConnectString)
+       options => options.UseSqlServer(
+           sqlContext.Auth.ConnectString,
+           sqlOptions => sqlOptions.EnableRetryOnFailure())
    );
 
     var app = builder.Build();

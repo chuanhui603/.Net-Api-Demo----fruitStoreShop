@@ -8,8 +8,10 @@ namespace 水水水果API.Interfaces
         IEnumerable<MemberResponse> GetMembersByPage(int page, int pageSize);
         void DeleteMember(int id);
         MemberResponse GetMemberById(int id);
-        int RegisterMember(MemberUpsert member);
-        int UpdateMember(MemberUpsert member);
-        int UpsertMember(MemberUpsert member);
+
+        /// <summary>
+        /// 更新會員資料（僅限 Member 本身欄位，不涉及 Customer/User）
+        /// </summary>
+        int UpdateMember(MemberUpdate memberUpdate);
     }
 }

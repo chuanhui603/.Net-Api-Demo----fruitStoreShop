@@ -25,21 +25,21 @@ public partial class TWCRM_TESTContext : DbContext
     {
         modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Customer__3214EC07DE2DE93F");
+            entity.HasKey(e => e.Id).HasName("PK__Customer__3214EC0777773984");
 
             entity.Property(e => e.Id).ValueGeneratedNever();
         });
 
         modelBuilder.Entity<CustomerGroup>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Customer__3214EC07C8EECF20");
+            entity.HasKey(e => e.Id).HasName("PK__Customer__3214EC075ADB9FE7");
 
             entity.Property(e => e.IsActive).HasDefaultValue(true);
         });
 
         modelBuilder.Entity<Member>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Member__3214EC07C8DB42FC");
+            entity.HasKey(e => e.Id).HasName("PK__Member__3214EC0721977576");
 
             entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.IsActive).HasDefaultValue(true);
@@ -53,11 +53,14 @@ public partial class TWCRM_TESTContext : DbContext
 
         modelBuilder.Entity<MemberTier>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__MemberTi__3214EC073DC5DA03");
+            entity.HasKey(e => e.Id).HasName("PK__MemberTi__3214EC07BFE4C17B");
 
             entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.IsActive).HasDefaultValue(true);
         });
+        modelBuilder.HasSequence("Customer_Seq");
+        modelBuilder.HasSequence("Member_Seq");
+        modelBuilder.HasSequence("MemberTier_Seq");
 
         OnModelCreatingPartial(modelBuilder);
     }

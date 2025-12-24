@@ -1,3 +1,5 @@
+using 水水水果API.Models.DTO;
+
 namespace 水水水果API.Services
 {
     /// <summary>
@@ -19,20 +21,36 @@ namespace 水水水果API.Services
             return _customerRepository.GetCustomerById(id);
         }
 
-        public int UpsertCustomer(CustomerUpsert customerDto)
+        public int CreateCustomer(CustomerCreate customerCreate)
         {
-            if (customerDto.Id > 0)
-            {
-                var existingCustomer = _customerRepository.GetCustomerById(customerDto.Id);
-                if (existingCustomer != null)
-                {
-                    _logger.LogInformation("Updating existing customer with ID: {CustomerId}", customerDto.Id);
-                    return _customerRepository.UpsertCustomer(customerDto);
-                }
-            }
-
             _logger.LogInformation("Creating new customer");
-            return _customerRepository.UpsertCustomer(customerDto);
+            return _customerRepository.CreateCustomer(new Customer()
+            {
+                BrandId = customerCreate.BrandId,
+                FirstName = customerCreate.FirstName,
+                LastName = customerCreate.LastName,
+                BirthDay = customerCreate.BirthDay,
+                Gender = customerCreate.Gender,
+                Phone = customerCreate.Phone,
+            });
+        }
+
+        public int UpdateCustomer(CustomerUpdate customerUpdate)
+        {
+            var existingCustomer = _customerRepository.GetCustomerById(customerUpdate.Id)
+                ?? throw new ArgumentException($"Customer with ID {customerUpdate.Id} not found.");
+
+            _logger.LogInformation("Updating existing customer with ID: {CustomerId}", customerUpdate.Id);
+            return _customerRepository.UpdateCustomer(new Customer()
+            {
+                Id = customerUpdate.Id,
+                BrandId = customerUpdate.BrandId,
+                FirstName = customerUpdate.FirstName,
+                LastName = customerUpdate.LastName,
+                BirthDay = customerUpdate.BirthDay,
+                Gender = customerUpdate.Gender,
+                Phone = customerUpdate.Phone,
+            });
         }
     }
 }

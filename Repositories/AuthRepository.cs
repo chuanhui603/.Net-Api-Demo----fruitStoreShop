@@ -1,19 +1,23 @@
 ﻿using Framework.SqlCommon.SQLHelper;
 using FrameWork.Helper.Transfer;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
+using 水水水果API.Models.DTO;
+using 水水水果API.Models.DTO.Login;
 
 namespace 水水水果API.Repositories
 {
     public class AuthRepository : IAuthRepository
     {
-        private readonly ILogger<CustomerRepository> _logger;
+        private readonly ILogger<AuthRepository> _logger;
         private readonly TWAUTH_TESTContext _authConnection;
         private readonly DbConnection _authConnect;
         private readonly SqlCommonContext _commonContext;
 
-        public AuthRepository(TWAUTH_TESTContext authConnection, SqlCommonContext commonContext)
+        public AuthRepository(TWAUTH_TESTContext authConnection, SqlCommonContext commonContext, ILogger<AuthRepository> logger)
         {
+            _logger = logger;
             _commonContext = commonContext;
             _authConnection = authConnection;
             _authConnect = authConnection.Database.GetDbConnection();
@@ -26,37 +30,65 @@ namespace 水水水果API.Repositories
 
         public User GetUserById(int user)
         {
-            return GetUserByList([user]).Single();
+            return GetUserByList([user]).SingleOrDefault();
         }
 
-        public int UpsertUser(UserUpsert user)
+        public int CreateUser(User user)
         {
-            DateTime dateNow = _commonContext.CRM.GetDbDate(_authConnect, _authConnection.Database.CurrentTransaction);
-            User createMem = MappingHelper.ModelMapping<User>(user);
-            User targetUser = _authConnection.Users.Find(user.UserId);
-            int newId = 0;
+            DateTime dateNow = _commonContext.Auth.GetDbDate(_authConnect, _authConnection.Database.CurrentTransaction);
 
-            _commonContext.CRM.ExecuteTransaction(_authConnection, () =>
+            var newUser = new User
             {
-                if (targetUser == null)
-                {
-                    createMem.CreateDate = dateNow;
-                    createMem.LastUpdateDate = dateNow;
-                    createMem.IsActive = true;
-                    _authConnection.Users.Add(createMem);
-                    _authConnection.SaveChanges();
-                    newId = createMem.Id;
-                }
-                else
-                {
-                    _authConnection.Entry(targetUser).CurrentValues.SetValues(user);
-                    _authConnection.Entry(targetUser).Property(x => x.CreateDate).IsModified = false;
-                    targetUser.LastUpdateDate = dateNow;
-                    _authConnection.SaveChanges();
-                    newId = targetUser.Id;
-                }
-            });
-            return newId;
+                Email = user.Email,
+                PassWord = user.PassWord,
+                IsActive = user.IsActive,
+                Provider = user.Provider,
+                ProviderId = user.ProviderId,
+                ProviderEmail = user.ProviderEmail,
+                CreateDate = dateNow,
+                LastUpdateDate = dateNow
+            };
+
+            _authConnection.Users.Add(newUser);
+            _authConnection.SaveChanges();
+
+            return newUser.Id;
+        }
+
+        public int UpdateUser(User user)
+        {
+            DateTime dateNow = _commonContext.Auth.GetDbDate(_authConnect, _authConnection.Database.CurrentTransaction);
+            var targetUser = _authConnection.Users.Find(user.Id)
+                ?? throw new ArgumentException($"User with ID {user.Id} not found.");
+
+            targetUser.Email = user.Email;
+            targetUser.PassWord = user.PassWord;
+            targetUser.IsActive = user.IsActive;
+            targetUser.Provider = user.Provider;
+            targetUser.ProviderId = user.ProviderId;
+            targetUser.ProviderEmail = user.ProviderEmail;
+
+            _authConnection.Entry(targetUser).Property(x => x.CreateDate).IsModified = false;
+            targetUser.LastUpdateDate = dateNow;
+
+            _authConnection.SaveChanges();
+
+            return targetUser.Id;
+        }
+
+        public bool UserExists(int userId)
+        {
+            return _authConnection.Users.AsNoTracking().SingleOrDefault(x => x.Id == userId) != null;
+        }
+
+        public User GetUserByLogin(LoginDTO loginDTO)
+        {
+            return _authConnection.Users.AsNoTracking().SingleOrDefault(x => x.Email == loginDTO.Email && x.PassWord == loginDTO.Password);
+        }
+
+        public bool ValidUserByEmail(string email)
+        {
+            return _authConnection.Users.AsNoTracking().FirstOrDefault(x => x.Email == email) != null;
         }
     }
 }

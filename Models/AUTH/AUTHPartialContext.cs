@@ -7,20 +7,18 @@ namespace 水水水果API.Models.AUTH
     {
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder)
         {
-            List<string> seqList =
-            [
-                "User_Seq",
-                "RefreshToken_Seq",
-            ];
+            modelBuilder.HasSequence<int>("User_Seq").StartsAt(1).IncrementsBy(1);
+            modelBuilder.Entity<User>()
+                    .Property(c => c.Id)
+                    .HasDefaultValueSql($"NEXT VALUE FOR User_Seq")
+                    .ValueGeneratedOnAdd(); ;
 
-            foreach (string seq in seqList)
-            {
-                modelBuilder.HasSequence<int>(seq).StartsAt(1).IncrementsBy(1);
-                modelBuilder.Entity<Customer>()
-                        .Property(c => c.Id)
-                        .HasDefaultValueSql($"NEXT VALUE FOR {seq}");
-            }
+            modelBuilder.HasSequence<int>("RefreshToken_Seq").StartsAt(1).IncrementsBy(1);
+            modelBuilder.Entity<RefreshToken>()
+                    .Property(c => c.Id)
+                    .HasDefaultValueSql($"NEXT VALUE FOR RefreshToken_Seq")
+                    .ValueGeneratedOnAdd(); ;
         }
     }
- 
+
 }

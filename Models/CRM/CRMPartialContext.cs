@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Ocsp;
 
 namespace 水水水果API.Models.CRM
 {
@@ -6,20 +7,24 @@ namespace 水水水果API.Models.CRM
     {
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder)
         {
-            List<string> seqList =
-            [
-                "Customer_Seq",
-                "Member_Seq",
-                "MemberTier_Seq"
-            ];
 
-            foreach (string seq in seqList)
-            {
-                modelBuilder.HasSequence<int>(seq).StartsAt(1).IncrementsBy(1);
-                modelBuilder.Entity<Customer>()
-                        .Property(c => c.Id)
-                        .HasDefaultValueSql($"NEXT VALUE FOR {seq}");
-            }
+            modelBuilder.HasSequence<int>("Customer_Seq").StartsAt(1).IncrementsBy(1);
+            modelBuilder.Entity<Customer>()
+                    .Property(c => c.Id)
+                    .HasDefaultValueSql($"NEXT VALUE FOR Customer_Seq")
+                    .ValueGeneratedOnAdd();
+
+            modelBuilder.HasSequence<int>("Member_Seq").StartsAt(1).IncrementsBy(1);
+            modelBuilder.Entity<Member>()
+                    .Property(c => c.Id)
+                    .HasDefaultValueSql($"NEXT VALUE FOR Member_Seq")
+                    .ValueGeneratedOnAdd(); ;
+
+            modelBuilder.HasSequence<int>("MemberTier_Seq").StartsAt(1).IncrementsBy(1);
+            modelBuilder.Entity<MemberTier>()
+                    .Property(c => c.Id)
+                    .HasDefaultValueSql($"NEXT VALUE FOR MemberTier_Seq")
+                    .ValueGeneratedOnAdd();
         }
     }
 }

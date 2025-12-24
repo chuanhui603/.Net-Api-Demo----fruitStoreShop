@@ -5,9 +5,6 @@ using 水水水果API.Interfaces;
 
 namespace 水水水果API.Repositories
 {
-    /// <summary>
-    /// MemberRepository 只負責純資料存取操作，業務邏輯由 MemberService 處理
-    /// </summary>
     public class MemberRepository : IMemberRepository
     {
         private readonly TWCRM_TESTContext _crmConnection;
@@ -23,9 +20,8 @@ namespace 水水水果API.Repositories
             _logger = logger;
         }
 
-        public Member GetMemberById(int id) => _crmConnection.Members.Where(x => x.Id == id).Include(x => x.Customer).AsNoTracking().Single();
+        public Member GetMemberById(int id) => _crmConnection.Members.Where(x => x.Id == id).Include(x => x.Customer).AsNoTracking().SingleOrDefault();
 
-        public Member GetMemberByIdTracking(int id) => _crmConnection.Members.Find(id);
 
         public IEnumerable<MemberResponse> GetMember(List<int> customers)
         {
