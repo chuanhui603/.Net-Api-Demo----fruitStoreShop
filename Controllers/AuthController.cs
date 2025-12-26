@@ -12,12 +12,12 @@ public class AuthController : ControllerBase
         _authService = authService;
     }
 
-    [HttpPost("login")]
+    [HttpPost("Login")]
     public IActionResult Login([FromBody] LoginDTO login)
     {
         try
         {
-            var result = _authService.Login(login);
+            LoginResponseDTO result = _authService.Login(login);
             if (result == null) return BadRequest("帳號登入錯誤");
             return Ok(result);
         }
@@ -31,7 +31,7 @@ public class AuthController : ControllerBase
 
     [Authorize]
     [ServiceFilter(typeof(LogoutActionFilter))]
-    [HttpGet("logout")]
+    [HttpGet("Logout")]
     public IActionResult Logout()
     {
         try
@@ -45,26 +45,7 @@ public class AuthController : ControllerBase
         }
     }
 
-    [AllowAnonymous]
-    [HttpGet("exists")]
-    public IActionResult Exists([FromQuery] string email)
-    {
-        try
-        {
-            var member = _authService.ValidMemberByEmail(email);
-            if (member == false)
-            {
-                return NotFound(false);
-            }
-            return Ok(true);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "Internal server error: " + ex.Message);
-        }
-    }
-
-    [HttpPost("refresh")]
+    [HttpPost("Refresh")]
     public IActionResult RefreshToken(string refreshToken)
     {
         try

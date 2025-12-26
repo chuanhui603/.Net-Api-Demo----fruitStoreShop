@@ -14,7 +14,7 @@ namespace 水水水果API.Interfaces
         List<User> GetUserByList(List<int> users);
 
         User GetUserById(int user);
-        User GetUserByLogin(LoginDTO loginDTO);
-        bool ValidUserByEmail(string email);
+        User GetUserByEmail(string email);
+        bool ValidUserByPassword(string password);
     }
 }

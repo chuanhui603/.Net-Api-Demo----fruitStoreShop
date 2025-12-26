@@ -4,13 +4,10 @@ namespace 水水水果API.Models.DTO
 {
     public record MemberResponse
     {
-        public int? MemberId { get; set; }
-
-        public int BrandId { get; set; }
+        //尚未實作 預設Member
+        public string Role { get; set; } = "Member";
 
         public string Email { get; set; }
-
-        public string PassWord { get; set; }
 
         public string FirstName { get; set; }
 
@@ -21,9 +18,5 @@ namespace 水水水果API.Models.DTO
         public DateTime BirthDay { get; set; }
 
         public string Phone { get; set; }
-
-        public bool IsActive { get; set; }
-
-        public DateTime? LastLoginAt { get; set; }
     }
 }

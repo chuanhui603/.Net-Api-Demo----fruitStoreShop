@@ -2,6 +2,7 @@
 using FrameWork.Helper.Transfer;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using System.Data.Common;
 using 水水水果API.Models.DTO;
 using 水水水果API.Models.DTO.Login;
@@ -81,14 +82,15 @@ namespace 水水水果API.Repositories
             return _authConnection.Users.AsNoTracking().SingleOrDefault(x => x.Id == userId) != null;
         }
 
-        public User GetUserByLogin(LoginDTO loginDTO)
+        public User GetUserByEmail(string email)
         {
-            return _authConnection.Users.AsNoTracking().SingleOrDefault(x => x.Email == loginDTO.Email && x.PassWord == loginDTO.Password);
+            return _authConnection.Users.AsNoTracking().SingleOrDefault(x => x.Email == email);
         }
 
-        public bool ValidUserByEmail(string email)
+        public bool ValidUserByPassword(string password)
         {
-            return _authConnection.Users.AsNoTracking().FirstOrDefault(x => x.Email == email) != null;
+            //後續需要實作密碼雜湊驗證 目前先分析明碼
+           return _authConnection.Users.AsNoTracking().SingleOrDefault(x=>x.PassWord == password) !=null;
         }
     }
 }

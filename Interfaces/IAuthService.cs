@@ -9,14 +9,7 @@ public interface IAuthService
     LoginResponseDTO RefreshToken(string refreshToken);
     bool ValidMemberByEmail(string email);
     User GetUserById(int userId);
-
-    /// <summary>
-    /// 新增 User
-    /// </summary>
     int CreateUser(UserCreate userCreate);
-
-    /// <summary>
-    /// 更新 User
-    /// </summary>
     int UpdateUser(UserUpdate userUpdate);
+    User GetUserByEmail(string email);
 }

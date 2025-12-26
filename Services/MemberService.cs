@@ -1,17 +1,21 @@
-﻿using System.Data.Common;
+﻿using Serilog;
+using System.Data.Common;
 
 namespace 水水水果API.Services
 {
     public class MemberService : IMemberService
     {
         private readonly IMemberRepository _memberRepository;
+
         private readonly ILogger<MemberService> _logger;
 
         public MemberService(ILogger<MemberService> logger, IMemberRepository memberRepository)
         {
             _logger = logger;
             _memberRepository = memberRepository;
+        
         }
+
 
         public IEnumerable<MemberResponse> GetMembers(List<int> customers)
         {
@@ -23,23 +27,33 @@ namespace 水水水果API.Services
             return _memberRepository.GetMemberByPage(page, pageSize);
         }
 
-        public MemberResponse GetMemberById(int id)
+        public MemberResponse GetMemberByUserId(int userid)
         {
-            var m = _memberRepository.GetMemberById(id);
-            if (m == null) return null;
+            Member m = _memberRepository.GetMembersByUser(userid) ?? throw new ArgumentException($"Member with UserID {userid} not found.");
 
             return new MemberResponse
             {
-                MemberId = m.Id,
                 FirstName = m.Customer?.FirstName,
                 LastName = m.Customer?.LastName,
                 Phone = m.Customer?.Phone,
                 BirthDay = m.Customer?.BirthDay ?? default,
-                BrandId = m.BrandId,
-                IsActive = m.IsActive,
                 Gender = m.Customer?.Gender,
             };
-        }  
+        }
+
+        public MemberResponse GetMemberById(int id)
+        {
+            var m = _memberRepository.GetMemberById(id);
+
+            return new MemberResponse
+            {
+                FirstName = m.Customer?.FirstName,
+                LastName = m.Customer?.LastName,
+                Phone = m.Customer?.Phone,
+                BirthDay = m.Customer?.BirthDay ?? default,
+                Gender = m.Customer?.Gender,
+            };
+        }
 
         public int UpdateMember(MemberUpdate memberUpdate)
         {
@@ -56,10 +70,9 @@ namespace 水水水果API.Services
             return memberId;
         }
 
-        public void DeleteMember(int id)
+        public void DeleteMember(int userId)
         {
-            Member member = _memberRepository.GetMemberById(id) 
-                ?? throw new ArgumentNullException($"Member does not exist. ID: {id}");
+            Member member = _memberRepository.GetMembersByUser(userId) ?? throw new ArgumentException($"Member with UserID {userId} not found.");
             _memberRepository.DeleteMember(member);
         }
     }

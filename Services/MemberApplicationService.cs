@@ -1,11 +1,5 @@
-using Framework.SqlCommon.SQLHelper;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
-using 水水水果API.Interfaces;
-using 水水水果API.Models.CRM;
-using 水水水果API.Repositories;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-
 
 namespace 水水水果API.Services
 {
@@ -75,7 +69,7 @@ namespace 水水水果API.Services
             }
         }
 
-        public int RegisterMember(MemberCreate memberCreate)
+        public MemberResponse RegisterMember(MemberCreate memberCreate)
         {
             int memberId = 0;
             var strategy = _crmContext.Database.CreateExecutionStrategy();
@@ -88,7 +82,6 @@ namespace 水水水果API.Services
                     _authContext.Database.BeginTransaction();
 
                     int customerId = ResolveCustomerId(memberCreate);
-
                     int userId = ResolveUserId(memberCreate);
 
                     memberId = _memberRepository.CreateMember(new Member()
@@ -104,17 +97,24 @@ namespace 水水水果API.Services
 
                     _crmContext.Database.CommitTransaction();
                     _authContext.Database.CommitTransaction();
-                    _logger.LogInformation($"會員註冊完成，MemberId: {memberId}, CustomerId: {customerId}, UserId: {userId}");
+                    _logger.LogInformation("會員註冊完成，MemberId: {MemberId}, CustomerId: {CustomerId}, UserId: {UserId}", memberId, customerId, userId);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     _crmContext.Database.RollbackTransaction();
                     _authContext.Database.RollbackTransaction();
                     throw;
                 }
-             
+
             });
-            return memberId;
+            return new MemberResponse()
+            {
+                BirthDay = memberCreate.BirthDay,
+                Email = memberCreate.Email,
+                FirstName = memberCreate.FirstName,
+                Gender = memberCreate.Gender,
+                Phone = memberCreate.Phone,
+            };
 
         }
 
@@ -127,11 +127,9 @@ namespace 水水水果API.Services
                     .FirstOrDefault(c => c.Id == memberCreate.CustomerId.Value);
 
                 if (existingCustomer == null)
-                {
-                    throw new ArgumentException($"CustomerId {memberCreate.CustomerId.Value} 不存在，無法連結");
-                }
+                    throw new ArgumentException($"CustomerId {memberCreate.CustomerId.Value} is not exist");
 
-                _logger.LogInformation($"使用既有 Customer，CustomerId: {memberCreate.CustomerId.Value}");
+                _logger.LogInformation("Use Exist Customer，CustomerId: {CustomerId}", memberCreate.CustomerId.Value);
                 return memberCreate.CustomerId.Value;
             }
 
@@ -147,7 +145,7 @@ namespace 水水水果API.Services
             };
             int newId = _customerRepository.CreateCustomer(newCustomer);
 
-            _logger.LogInformation($"新建 Customer，CustomerId: {newId}");
+            _logger.LogInformation("Create Customer，CustomerId: {newId}", newId);
             return newId;
         }
 
@@ -159,10 +157,10 @@ namespace 水水水果API.Services
 
                 if (!userExists)
                 {
-                    throw new ArgumentException($"UserId {memberCreate.UserId.Value} 不存在，無法連結");
+                    throw new ArgumentException($"UserId {memberCreate.UserId.Value} is not exist");
                 }
 
-                _logger.LogInformation("使用既有 User，UserId: {UserId}", memberCreate.UserId.Value);
+                _logger.LogInformation("Use Exist User，UserId: {UserId}", memberCreate.UserId.Value);
                 return memberCreate.UserId.Value;
             }
 
@@ -174,7 +172,7 @@ namespace 水水水果API.Services
             };
 
             var newUserId = _authRepository.CreateUser(userCreate);
-            _logger.LogInformation("新建 User，UserId: {UserId}", newUserId);
+            _logger.LogInformation("Create User，UserId: {UserId}", newUserId);
 
             return newUserId;
         }

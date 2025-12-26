@@ -1,5 +1,10 @@
 ﻿using Azure.Core;
+using Google.Protobuf.Collections;
 using Microsoft.AspNetCore.Authorization;
+using Mysqlx;
+using MySqlX.XDevAPI.Common;
+using Serilog;
+using 水水水果API.Models.CRM;
 using 水水水果API.Models.DTO;
 
 namespace 水水水果.Controllers
@@ -13,50 +18,70 @@ namespace 水水水果.Controllers
         private readonly ILogger<CustomerController> _logger;
         private readonly IMemberService _memberService;
         private readonly IAuthService _authService;
-        private readonly IMemberApplicationService _memberRegistrationOrchestrator;
+        private readonly IMemberApplicationService _memberApplicationService;
 
         public CustomerController(
             ILogger<CustomerController> logger,
             IMemberService memberService,
              IAuthService authService,
-            IMemberApplicationService memberRegistrationOrchestrator)
+            IMemberApplicationService memberApplicationService)
         {
             _logger = logger;
             _memberService = memberService;
             _authService = authService;
-            _memberRegistrationOrchestrator = memberRegistrationOrchestrator;
+            _memberApplicationService = memberApplicationService;
         }
 
         // GET: api/<CustomerController>/Info
-        [HttpPost("Info")]
+        [HttpPost("GetAll")]
         public IActionResult Get(List<int> customers)
         {
             try
             {
-                var members = _memberService.GetMembers(customers);
-                return Ok(members);
+                IEnumerable<MemberResponse> members = _memberService.GetMembers(customers);
+                return Ok(ApiResponse<IEnumerable<MemberResponse>>.Ok(members));
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Search Error");
                 return StatusCode(500, "Internal server error: " + ex.Message);
             }
         }
 
-        // GET api/<CustomerController>/5
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        // GET api/<CustomerController>/email
+        [HttpGet("{email}")]
+        public IActionResult GetByEmail(string email)
         {
             try
             {
-                var member = _memberService.GetMemberById(id);
+                User user = _authService.GetUserByEmail(email);
+                if (user == null) return NotFound();
+                MemberResponse member = _memberService.GetMemberByUserId(user.Id);
                 if (member == null)
-                {
                     return NotFound();
-                }
-                return Ok(member);
+                return Ok(ApiResponse<MemberResponse>.Ok(member));
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Search Error");
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+        }
+
+        // GET api/<CustomerController>/exist
+        [AllowAnonymous]
+        [HttpGet("Exist")]
+        public IActionResult ValidateMember([FromQuery] string email)
+        {
+            try
+            {
+                var exist = _authService.ValidMemberByEmail(email);
+                return Ok(ApiResponse<bool>.Ok(exist, exist ? "該信箱已被使用" : "該信箱可以使用"));
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Validate Error");
                 return StatusCode(500, "Internal server error: " + ex.Message);
             }
         }
@@ -67,18 +92,23 @@ namespace 水水水果.Controllers
         {
             try
             {
-                var memberId = _memberRegistrationOrchestrator.RegisterMember(memberCreate);
+                MemberResponse member = _memberApplicationService.RegisterMember(memberCreate);
+                LoginResponseDTO result = _authService.Login(new LoginDTO()
+                {
+                    Email = memberCreate.Email,
+                    Password = memberCreate.PassWord,
 
-            
-                return Ok(new { MemberId = memberId });
+                });
+                result.User = member;
+                return Ok(ApiResponse<LoginResponseDTO>.Ok(result));
             }
-            catch (ArgumentException ex)
+            catch (ArgumentNullException ex)
             {
                 return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "會員註冊失敗");
+                _logger.LogError(ex, "Register Error");
                 return StatusCode(500, "Internal server error: " + ex.Message);
             }
         }
@@ -89,30 +119,34 @@ namespace 水水水果.Controllers
             try
             {
                 var memberId = _memberService.UpdateMember(memberUpdate);
-                return Ok(new { MemberId = memberId });
+                return Ok(ApiResponse<bool>.Ok(true, "Update Success"));
             }
-            catch (ArgumentException ex)
+            catch (ArgumentNullException ex)
             {
                 return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "會員更新失敗");
+                _logger.LogError(ex, "Update Error");
                 return StatusCode(500, "Internal server error: " + ex.Message);
             }
         }
 
         // DELETE api/<CustomerController>/5
-        [HttpDelete("{id}")]
-        public IActionResult MemberDelete(int id)
+        [HttpDelete("{email}")]
+        public IActionResult MemberDelete(string email)
         {
             try
             {
-                _memberService.DeleteMember(id);
+                User user = _authService.GetUserByEmail(email);
+                if (user == null)
+                    return NotFound();
+                _memberService.DeleteMember(user.Id);
                 return NoContent();
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Delete Error");
                 return StatusCode(500, "Internal server error: " + ex.Message);
             }
         }

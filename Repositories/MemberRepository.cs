@@ -20,22 +20,34 @@ namespace 水水水果API.Repositories
             _logger = logger;
         }
 
-        public Member GetMemberById(int id) => _crmConnection.Members.Where(x => x.Id == id).Include(x => x.Customer).AsNoTracking().SingleOrDefault();
+        public Member GetMemberById(int id)
+        {
+            return _crmConnection.Members.Where(x => x.Id == id).Include(x => x.Customer).AsNoTracking().SingleOrDefault();
+        }
 
+        public Member GetMembersByUser(int userId)
+        {
+            return GetMembersByUsers([userId]).SingleOrDefault();
+        }
+
+        public List<Member> GetMembersByUsers(List<int> userIds)
+        {
+            if (userIds == null || userIds.Count == 0)
+                throw new ArgumentNullException(nameof(userIds), "At least one user ID must be provided.");
+            return [.. _crmConnection.Members.Where(x => userIds.Contains(x.UserId)).Include(x => x.Customer).AsNoTracking()];
+        }
 
         public IEnumerable<MemberResponse> GetMember(List<int> customers)
         {
-            if (customers.Count == 0) throw new ArgumentException("Customer list cannot be empty", nameof(customers));
+            if (customers == null || customers.Count == 0)
+                throw new ArgumentNullException(nameof(customers), "At least one Customer ID must be provided.");
             return _crmConnection.Members.Include(x => x.Customer).Where(x => customers.Contains(x.Id)).AsNoTracking().Select(m => new MemberResponse
             {
-                MemberId = m.Id,
-                BrandId = m.BrandId,
                 FirstName = m.Customer.FirstName,
                 LastName = m.Customer.LastName,
                 Gender = m.Customer.Gender,
                 Phone = m.Customer.Phone,
                 BirthDay = m.Customer.BirthDay,
-                IsActive = m.IsActive,
             });
         }
 
@@ -43,17 +55,13 @@ namespace 水水水果API.Repositories
         {
             return [.. _crmConnection.Members.Skip((page - 1) * pageSize).Take(pageSize).AsNoTracking().Select(m => new MemberResponse
             {
-                MemberId = m.Id,
-                BrandId = m.BrandId,
                 FirstName = m.Customer.FirstName,
                 LastName = m.Customer.LastName,
                 Gender = m.Customer.Gender,
                 Phone = m.Customer.Phone,
                 BirthDay = m.Customer.BirthDay,
-                IsActive = m.IsActive,
             })];
         }
-
         public int CreateMember(Member member)
         {
             DateTime dateNow = _commonContext.CRM.GetDbDate(_crmConnect, _crmConnection.Database.CurrentTransaction);
@@ -82,6 +90,7 @@ namespace 水水水果API.Repositories
 
         public void DeleteMember(Member member)
         {
+            ArgumentNullException.ThrowIfNull(member);
             var targetMember = _crmConnection.Members.Find(member.Id) ?? throw new ArgumentException($"Member with ID {member.Id} not found.");
             targetMember.IsActive = false;
 

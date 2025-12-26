@@ -7,7 +7,7 @@ namespace 水水水果API.Interfaces
 
     public interface IMemberApplicationService
     {
-        int RegisterMember(MemberCreate memberCreate);
+        MemberResponse RegisterMember(MemberCreate memberCreate);
         void UpdateMember(MemberUpdate memberUpdate);
     }
 }

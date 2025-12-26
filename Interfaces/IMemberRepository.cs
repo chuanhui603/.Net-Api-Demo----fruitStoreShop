@@ -11,5 +11,8 @@ namespace 水水水果API.Interfaces
         int CreateMember(Member member);
         int UpdateMember(Member member);
         void DeleteMember(Member member);
+        Member GetMembersByUser(int userId);
+        List<Member> GetMembersByUsers(List<int> userIds);
+
     }
 }

@@ -1,16 +1,13 @@
 ﻿using FrameWork.Helper.Models;
-using 水水水果API.Models.DTO;
+using 水水水果API.Interfaces;
 using User = 水水水果API.Models.AUTH.User;
 
 
 namespace 水水水果API.Services
 {
-    /// <summary>
-    /// AuthService 負責處理認證相關的業務邏輯，包含 User 的 CRUD 操作
-    /// </summary>
     public class AuthService : IAuthService
     {
-        private readonly IMemberRepository _memberRepository;
+        private readonly IMemberService _memberService;
         private readonly IAuthRepository _authRepository;
         private readonly ILogger<AuthService> _logger;
         private readonly JWTModel _options;
@@ -21,13 +18,13 @@ namespace 水水水果API.Services
         public AuthService(
             ILogger<AuthService> logger,
             JWTHelper jwt,
-            IMemberRepository memberRepository,
+            IMemberService memberService,
             IAuthRepository authRepository,
             IHttpContextAccessor httpcontext,
             IRedisService redisService,
             IOptions<JWTModel> options)
         {
-            _memberRepository = memberRepository;
+            _memberService = memberService;
             _authRepository = authRepository;
             _logger = logger;
             _jwtHelper = jwt;
@@ -39,8 +36,10 @@ namespace 水水水果API.Services
         public LoginResponseDTO Login(LoginDTO login)
         {
             _logger.LogInformation("開始登入程序");
-            var user = GetUser(login);
-            if (user == null) throw new ArgumentNullException("使用者不存在，請檢察Email和密碼");
+            User user = _authRepository.GetUserByEmail(login.Email);
+            MemberResponse member = _memberService.GetMemberByUserId(user.Id);
+            if (!_authRepository.ValidUserByPassword(login.Password))
+                throw new ArgumentException($"Member valid Fail. Email or Password not found.");
 
             _logger.LogInformation("{user}", user);
             var userEmail = user.Email;
@@ -53,21 +52,17 @@ namespace 水水水果API.Services
             var token = _jwtHelper.GenerateToken(new JwtInfo
             {
                 Email = user.Email,
-                MemberId = user.Id,
                 JWTIssuer = _options.JWTIssuer,
-                JWTSignKey = _options.JWTSignKey
+                JWTSignKey = _options.JWTSignKey,
+                Role = member.Role,
             });
 
             return new LoginResponseDTO
             {
                 AccessToken = token,
-                Expiration = DateTime.Now.AddMinutes(60)
+                Expiration = DateTime.Now.AddMinutes(60),
+                User = member
             };
-        }
-
-        private User GetUser(LoginDTO login)
-        {
-            return _authRepository.GetUserByLogin(login);
         }
 
         public void Logout()
@@ -98,7 +93,12 @@ namespace 水水水果API.Services
 
         public bool ValidMemberByEmail(string email)
         {
-           return _authRepository.ValidUserByEmail(email);
+            return _authRepository.GetUserByEmail(email) != null;
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            return _authRepository.GetUserByEmail(email);
         }
 
         public User GetUserById(int userId)
