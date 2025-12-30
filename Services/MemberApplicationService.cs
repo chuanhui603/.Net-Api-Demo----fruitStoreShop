@@ -32,41 +32,52 @@ namespace 水水水果API.Services
 
         public void UpdateMember(MemberUpdate memberUpdate)
         {
-            _crmContext.Database.BeginTransaction();
-            var transaction = (DbTransaction)_crmContext.Database.CurrentTransaction;
-            try
-            {
-                _customerRepository.UpdateCustomer(new Customer()
-                {
-                    Id = memberUpdate.CustomerId.Value,
-                    BirthDay = memberUpdate.BirthDay,
-                    BrandId = memberUpdate.BrandId,
-                    Gender = memberUpdate.Gender,
-                    FirstName = memberUpdate.FirstName,
-                    LastName = memberUpdate.LastName,
-                    Phone = memberUpdate.Phone,
-                });
+            var strategy = _crmContext.Database.CreateExecutionStrategy();
 
-                _memberRepository.UpdateMember(new Member()
-                {
-                    Id = memberUpdate.MemberId,
-                    AvatarUrl = memberUpdate.AvatarUrl,
-                    BrandId = memberUpdate.BrandId,
-                    CustomerId = memberUpdate.CustomerId.Value,
-                    IsActive = memberUpdate.IsActive,
-                    MemberTierId = memberUpdate.MemberTierId,
-                    StoreId = memberUpdate.StoreId,
-                    UserId = memberUpdate.UserId.Value,
-                });
-
-                transaction.Commit();
-            }
-            catch (Exception ex)
+            strategy.Execute(() =>
             {
-                _logger.LogError(ex, "會員修改失敗， Rollback");
-                transaction.Rollback();
-                throw;
-            }
+                try
+                {
+                    _crmContext.Database.BeginTransaction();
+                    _authContext.Database.BeginTransaction();
+                    User updateUser = _authRepository.GetUserByEmail(memberUpdate.Email);
+                    Member member = _memberRepository.GetMembersByUser(updateUser.Id);
+
+                    _customerRepository.UpdateCustomer(new Customer()
+                    {
+                        Id = member.Customer.Id,
+                        BirthDay = memberUpdate.Birthday,
+                        BrandId = memberUpdate.BrandId,
+                        Gender = memberUpdate.Gender,
+                        FirstName = memberUpdate.FirstName,
+                        LastName = memberUpdate.LastName,
+                        Phone = memberUpdate.Phone,
+                        Address = memberUpdate.Address
+                    });
+
+                    _memberRepository.UpdateMember(new Member()
+                    {
+                        Id = member.Id,
+                        AvatarUrl = memberUpdate.AvatarUrl,
+                        BrandId = memberUpdate.BrandId ,
+                        CustomerId = memberUpdate.CustomerId ?? member.Customer.Id,
+                        IsActive = memberUpdate.IsActive,
+                        MemberTierId = memberUpdate.MemberTierId,
+                        StoreId = memberUpdate.StoreId,
+                        UserId = memberUpdate.UserId?? member.UserId,
+                    });
+
+                    _crmContext.Database.CommitTransaction();
+                    _authContext.Database.CommitTransaction();
+                }
+                catch (Exception ex)
+                {
+                    _crmContext.Database.RollbackTransaction();
+                    _authContext.Database.RollbackTransaction();
+                    _logger.LogError(ex, "會員修改失敗， Rollback");
+                    throw;
+                }
+            });
         }
 
         public MemberResponse RegisterMember(MemberCreate memberCreate)
@@ -109,11 +120,12 @@ namespace 水水水果API.Services
             });
             return new MemberResponse()
             {
-                BirthDay = memberCreate.BirthDay,
+                Birthday = memberCreate.BirthDay.ToString("yyyy-MM-dd"),
                 Email = memberCreate.Email,
                 FirstName = memberCreate.FirstName,
                 Gender = memberCreate.Gender,
                 Phone = memberCreate.Phone,
+                Address = memberCreate.Address,
             };
 
         }
@@ -142,6 +154,7 @@ namespace 水水水果API.Services
                 Gender = memberCreate.Gender,
                 BirthDay = memberCreate.BirthDay,
                 Phone = memberCreate.Phone,
+                Address = memberCreate.Address
             };
             int newId = _customerRepository.CreateCustomer(newCustomer);
 

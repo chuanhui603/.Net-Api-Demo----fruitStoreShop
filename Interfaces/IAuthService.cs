@@ -12,4 +12,6 @@ public interface IAuthService
     int CreateUser(UserCreate userCreate);
     int UpdateUser(UserUpdate userUpdate);
     User GetUserByEmail(string email);
+
+    RefreshToken GetRefreshToken(string token);
 }

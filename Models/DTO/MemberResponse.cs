@@ -15,8 +15,8 @@ namespace 水水水果API.Models.DTO
 
         public string Gender { get; set; }
 
-        public DateTime BirthDay { get; set; }
-
+        public string Birthday { get; set; }
+        public string Address { get; set; }
         public string Phone { get; set; }
     }
 }

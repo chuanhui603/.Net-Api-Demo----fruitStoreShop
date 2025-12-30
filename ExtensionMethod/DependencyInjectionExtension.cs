@@ -1,5 +1,5 @@
 
-using Framework.SqlCommon.SQLHelper;
+
 
 namespace 水水水果API.ExtensionMethod;
 public static class DependencyInjectionExtension
@@ -17,8 +17,6 @@ public static class DependencyInjectionExtension
 
         // 註冊跨域服務
         services.AddScoped<IMemberApplicationService, MemberApplicationService>();
-        services.AddScoped<ISqlHelperFactory>(_ =>
-      new SqlHelperFactory(configuration.GetValue<string>("SqlConnection:DefaultConnection")));
 
         // 註冊儲存庫
         services.AddScoped<IProductRepository, ProductRepository>();

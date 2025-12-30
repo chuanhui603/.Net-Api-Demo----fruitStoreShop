@@ -1,5 +1,4 @@
-﻿using Framework.SqlCommon.SQLHelper;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
 using 水水水果API.Interfaces;
 
@@ -47,7 +46,7 @@ namespace 水水水果API.Repositories
                 LastName = m.Customer.LastName,
                 Gender = m.Customer.Gender,
                 Phone = m.Customer.Phone,
-                BirthDay = m.Customer.BirthDay,
+                Birthday = m.Customer.BirthDay.ToString("yyyy-MM-dd"),
             });
         }
 
@@ -59,7 +58,7 @@ namespace 水水水果API.Repositories
                 LastName = m.Customer.LastName,
                 Gender = m.Customer.Gender,
                 Phone = m.Customer.Phone,
-                BirthDay = m.Customer.BirthDay,
+                Birthday = m.Customer.BirthDay.ToString("yyyy-MM-dd"),
             })];
         }
         public int CreateMember(Member member)

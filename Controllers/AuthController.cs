@@ -46,11 +46,13 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("Refresh")]
-    public IActionResult RefreshToken(string refreshToken)
+    public IActionResult RefreshToken()
     {
         try
         {
-            var newRefreshToken = _authService.RefreshToken(refreshToken);
+            string requestToken = Request.Cookies["refreshToken"];
+            var newRefreshToken = _authService.GetRefreshToken(requestToken);
+
             if (newRefreshToken == null)
             {
                 return NotFound(false);

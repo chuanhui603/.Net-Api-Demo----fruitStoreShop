@@ -1,6 +1,4 @@
-﻿
-using Framework.SqlCommon.SQLHelper;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
 
 
@@ -46,6 +44,7 @@ namespace 水水水果API.Repositories
             targetCustomer.Gender = cust.Gender;
             targetCustomer.BirthDay = cust.BirthDay;
             targetCustomer.Phone = cust.Phone;
+            targetCustomer.Address = cust.Address;
 
             _crmConnection.Entry(targetCustomer).Property(x => x.CreateDate).IsModified = false;
             targetCustomer.LastUpdateDate = dateNow;

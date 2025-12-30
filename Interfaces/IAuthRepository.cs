@@ -16,5 +16,9 @@ namespace 水水水果API.Interfaces
         User GetUserById(int user);
         User GetUserByEmail(string email);
         bool ValidUserByPassword(string password);
+
+        RefreshToken GetRefreshToken(string  refreshToken);
+        bool ValidateRefreshToken(RefreshToken token);
+        void ClosedRefreshToken(RefreshToken token);
     }
 }

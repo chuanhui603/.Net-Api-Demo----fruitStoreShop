@@ -1,11 +1,7 @@
-﻿using Framework.SqlCommon.SQLHelper;
-using FrameWork.Helper.Transfer;
-using Microsoft.Data.SqlClient;
+﻿using Framework_SqlCommon.SQLHelper.Context;
 using Microsoft.EntityFrameworkCore;
-using Serilog;
 using System.Data.Common;
-using 水水水果API.Models.DTO;
-using 水水水果API.Models.DTO.Login;
+using 水水水果API.Models.AUTH;
 
 namespace 水水水果API.Repositories
 {
@@ -90,7 +86,23 @@ namespace 水水水果API.Repositories
         public bool ValidUserByPassword(string password)
         {
             //後續需要實作密碼雜湊驗證 目前先分析明碼
-           return _authConnection.Users.AsNoTracking().SingleOrDefault(x=>x.PassWord == password) !=null;
+            return _authConnection.Users.AsNoTracking().SingleOrDefault(x => x.PassWord == password) != null;
+        }
+
+        public bool ValidateRefreshToken(RefreshToken token)
+        {
+            return true;
+        }
+        public void ClosedRefreshToken(RefreshToken token)
+        {
+            token.IsUsed = true;
+            _authConnection.RefreshTokens.Add(token);
+            _authConnection.SaveChanges();
+        }
+
+        public RefreshToken GetRefreshToken(string token)
+        {
+           return _authConnection.RefreshTokens.AsNoTracking().SingleOrDefault(x=>x.TokenJti == token);
         }
     }
 }

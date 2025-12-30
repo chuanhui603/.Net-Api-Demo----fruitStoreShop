@@ -32,31 +32,15 @@ namespace 水水水果.Controllers
             _memberApplicationService = memberApplicationService;
         }
 
-        // GET: api/<CustomerController>/Info
-        [HttpPost("GetAll")]
-        public IActionResult Get(List<int> customers)
-        {
-            try
-            {
-                IEnumerable<MemberResponse> members = _memberService.GetMembers(customers);
-                return Ok(ApiResponse<IEnumerable<MemberResponse>>.Ok(members));
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Search Error");
-                return StatusCode(500, "Internal server error: " + ex.Message);
-            }
-        }
-
         // GET api/<CustomerController>/email
-        [HttpGet("{email}")]
-        public IActionResult GetByEmail(string email)
+        [HttpGet("Member")]
+        public IActionResult GetByAccount([FromQuery] string account)
         {
             try
             {
-                User user = _authService.GetUserByEmail(email);
+                User user = _authService.GetUserByEmail(account);
                 if (user == null) return NotFound();
-                MemberResponse member = _memberService.GetMemberByUserId(user.Id);
+                MemberResponse member = _memberService.GetMemberByUser(user);
                 if (member == null)
                     return NotFound();
                 return Ok(ApiResponse<MemberResponse>.Ok(member));
@@ -70,14 +54,13 @@ namespace 水水水果.Controllers
 
         // GET api/<CustomerController>/exist
         [AllowAnonymous]
-        [HttpGet("Exist")]
+        [HttpGet("Exists")]
         public IActionResult ValidateMember([FromQuery] string email)
         {
             try
             {
                 var exist = _authService.ValidMemberByEmail(email);
-                return Ok(ApiResponse<bool>.Ok(exist, exist ? "該信箱已被使用" : "該信箱可以使用"));
-
+                return Ok(ApiResponse<bool>.Ok(exist, exist ? "該會員已被使用" : "該會員可以使用"));
             }
             catch (Exception ex)
             {
@@ -97,7 +80,6 @@ namespace 水水水果.Controllers
                 {
                     Email = memberCreate.Email,
                     Password = memberCreate.PassWord,
-
                 });
                 result.User = member;
                 return Ok(ApiResponse<LoginResponseDTO>.Ok(result));
@@ -118,7 +100,7 @@ namespace 水水水果.Controllers
         {
             try
             {
-                var memberId = _memberService.UpdateMember(memberUpdate);
+                _memberApplicationService.UpdateMember(memberUpdate);
                 return Ok(ApiResponse<bool>.Ok(true, "Update Success"));
             }
             catch (ArgumentNullException ex)
@@ -134,6 +116,7 @@ namespace 水水水果.Controllers
 
         // DELETE api/<CustomerController>/5
         [HttpDelete("{email}")]
+
         public IActionResult MemberDelete(string email)
         {
             try

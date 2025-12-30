@@ -1,5 +1,4 @@
-﻿using Framework.SqlCommon.SQLHelper;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace 水水水果API.Repositories
 {

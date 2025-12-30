@@ -37,7 +37,7 @@ namespace 水水水果API.Services
         {
             _logger.LogInformation("開始登入程序");
             User user = _authRepository.GetUserByEmail(login.Email);
-            MemberResponse member = _memberService.GetMemberByUserId(user.Id);
+            MemberResponse member = _memberService.GetMemberByUser(user);
             if (!_authRepository.ValidUserByPassword(login.Password))
                 throw new ArgumentException($"Member valid Fail. Email or Password not found.");
 
@@ -76,7 +76,6 @@ namespace 水水水果API.Services
             }
             if (memberIdClaim != null && !string.IsNullOrEmpty(memberIdClaim.Value))
             {
-                // 使用 RedisService 將使用者加入登出清單
                 _redisService.AddUserToLogoutList(memberIdClaim.Value);
             }
             else
@@ -87,8 +86,13 @@ namespace 水水水果API.Services
 
         public LoginResponseDTO RefreshToken(string refreshToken)
         {
-            // 將來實作權杖重新整理功能
+          
             return null;
+        }
+
+        public RefreshToken GetRefreshToken(string token)
+        {
+            return _authRepository.GetRefreshToken(token);
         }
 
         public bool ValidMemberByEmail(string email)

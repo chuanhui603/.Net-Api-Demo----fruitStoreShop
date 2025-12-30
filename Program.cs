@@ -1,4 +1,4 @@
-﻿using Framework.SqlCommon.SQLHelper;
+﻿
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -135,6 +135,7 @@ try
 
     // 使用 CORS 設定
     app.UseCors("AllowAllOrigins");
+
     app.UseSerilogRequestLogging(options =>
     {
         options.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>

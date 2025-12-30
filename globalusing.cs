@@ -1,5 +1,4 @@
 ﻿global using 水水水果API.ExtensionMethod;
-global using 水水水果API.Models;
 global using 水水水果API.Models.RMS;
 global using 水水水果API.Models.ERP;
 global using 水水水果API.Models.CRM;
@@ -14,6 +13,7 @@ global using 水水水果API.Models.DTO.LinePay;
 global using 水水水果API.Filters;
 global using 水水水果API.Models.ConfigurationModel;
 global using FrameWork.Helper.Auth;
+global using Framework_SqlCommon.SQLHelper.Context;
 global using Microsoft.AspNetCore.Mvc;
 global using System.Text;
 global using System.Data;

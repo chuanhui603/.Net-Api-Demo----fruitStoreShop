@@ -18,6 +18,8 @@ namespace 水水水果API.Models.DTO
         public string AvatarUrl { get; set; }
 
         public string PassWord { get; set; }
+        public string Address { get; set; }
+
 
         public string FirstName { get; set; }
 
@@ -25,7 +27,7 @@ namespace 水水水果API.Models.DTO
 
         public string Gender { get; set; }
 
-        public DateTime BirthDay { get; set; }
+        public DateTime Birthday { get; set; }
 
         public string Phone { get; set; }
         public bool IsActive { get; set; }
