@@ -42,7 +42,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="address" class="form-label">地址</label>
-                  <input type="text" v-model="userData.address" class="form-control" id="address" required>
+                  <input type="text" v-model="userData.Address" class="form-control" id="address" required>
                 </div>
                 <div class="mb-3">
                   <label for="gender" class="form-label">性別</label>
@@ -89,11 +89,17 @@ const userData = ref({
   "FirstName": "",
   "LastName": "",
   "BirthDay": "",
-  "address": "",
+  "Address": "",
   "Phone": "",
   "Email": "",
   "Gender": "",
-  "Password": ""
+  "PassWord": "",
+  "StoreId": 1,
+  "BrandId": 1,
+  "CustomerId": null,
+  "UserId": null,
+  "MemberTierId": null,
+  "AvatarUrl": ""
 })
 const confirmPassword = ref('')
 const agreeTerms = ref(false)

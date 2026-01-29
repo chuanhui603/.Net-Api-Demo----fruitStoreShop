@@ -8,12 +8,16 @@
 
   <ItemGroup>
     <Compile Remove="FakesAssemblies\**" />
+    <Compile Remove="Tests\**" />
     <Compile Remove="logs\**" />
     <Content Remove="FakesAssemblies\**" />
+    <Content Remove="Tests\**" />
     <Content Remove="logs\**" />
     <EmbeddedResource Remove="FakesAssemblies\**" />
+    <EmbeddedResource Remove="Tests\**" />
     <EmbeddedResource Remove="logs\**" />
     <None Remove="FakesAssemblies\**" />
+    <None Remove="Tests\**" />
     <None Remove="logs\**" />
   </ItemGroup>
 

@@ -7,12 +7,13 @@ namespace 水水水果API.Services
     {
         private readonly LinePayModel _options;
         private readonly ILogger<LinePayService> _logger;
-        private  HttpClient client = new HttpClient();
+        private readonly HttpClient _client;
 
-        public LinePayService(IOptions<LinePayModel> options, ILogger<LinePayService> logger)
+        public LinePayService(IOptions<LinePayModel> options, ILogger<LinePayService> logger, HttpClient httpClient = null)
         {
             _options = options.Value;
             _logger = logger;
+            _client = httpClient ?? new HttpClient();
         }
 
         public async Task<LinePayResponseDTO> SendPaymentRequest(LinePayRequestDTO dto)
@@ -35,10 +36,10 @@ namespace 水水水果API.Services
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             // 帶入 Headers
-            client.DefaultRequestHeaders.Add("X-LINE-ChannelId", _options.LineID);
-            client.DefaultRequestHeaders.Add("X-LINE-Authorization-Nonce", nonce);
-            client.DefaultRequestHeaders.Add("X-LINE-Authorization", signature);
-            var response = await client.SendAsync(request);
+            _client.DefaultRequestHeaders.Add("X-LINE-ChannelId", _options.LineID);
+            _client.DefaultRequestHeaders.Add("X-LINE-Authorization-Nonce", nonce);
+            _client.DefaultRequestHeaders.Add("X-LINE-Authorization", signature);
+            var response = await _client.SendAsync(request);
             _logger.LogInformation("Response: {linePayResponse}", await response.Content.ReadAsStringAsync());
             var linePayResponse = JsonConvert.DeserializeObject<LinePayResponseDTO>(await response.Content.ReadAsStringAsync());
             return linePayResponse;
@@ -57,11 +58,11 @@ namespace 水水水果API.Services
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
 
-            client.DefaultRequestHeaders.Add("X-LINE-ChannelId", _options.LineID);
-            client.DefaultRequestHeaders.Add("X-LINE-Authorization-Nonce", nonce);
-            client.DefaultRequestHeaders.Add("X-LINE-Authorization", signature);
+            _client.DefaultRequestHeaders.Add("X-LINE-ChannelId", _options.LineID);
+            _client.DefaultRequestHeaders.Add("X-LINE-Authorization-Nonce", nonce);
+            _client.DefaultRequestHeaders.Add("X-LINE-Authorization", signature);
 
-            var response = await client.SendAsync(request);
+            var response = await _client.SendAsync(request);
             _logger.LogInformation("Response: {linePayResponse}", await response.Content.ReadAsStringAsync());
             var responseDto = JsonConvert.DeserializeObject<LinePayConfirmResponseDTO>(await response.Content.ReadAsStringAsync());
             return responseDto;

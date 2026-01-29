@@ -70,23 +70,20 @@ namespace 水水水果API.Services
             _logger.LogInformation("開始登出程序");
             var user = _httpcontext.HttpContext.User;
             var memberIdClaim = user.Claims.FirstOrDefault(c => c.Type == "Email");
-            if (_redisService.IsUserLoggedOut(memberIdClaim.Value))
-            {
-                throw new ArgumentException("會員未登入");
-            }
-            if (memberIdClaim != null && !string.IsNullOrEmpty(memberIdClaim.Value))
-            {
-                _redisService.AddUserToLogoutList(memberIdClaim.Value);
-            }
-            else
+            if (memberIdClaim == null || string.IsNullOrEmpty(memberIdClaim.Value))
             {
                 _logger.LogWarning("找不到使用者 Email，無法完成登出程序");
+                return;
             }
+
+            if (_redisService.IsUserLoggedOut(memberIdClaim.Value))
+                throw new ArgumentException("會員未登入");
+
+            _redisService.AddUserToLogoutList(memberIdClaim.Value);
         }
 
         public LoginResponseDTO RefreshToken(string refreshToken)
         {
-          
             return null;
         }
 
@@ -107,14 +104,7 @@ namespace 水水水果API.Services
 
         public User GetUserById(int userId)
         {
-            try
-            {
-                return _authRepository.GetUserById(userId);
-            }
-            catch
-            {
-                return null;
-            }
+            return _authRepository.GetUserById(userId);
         }
 
         public int CreateUser(UserCreate userCreate)
@@ -133,12 +123,8 @@ namespace 水水水果API.Services
 
         public int UpdateUser(UserUpdate userUpdate)
         {
-            var existingUser = GetUserById(userUpdate.UserId);
-            if (existingUser == null)
-            {
+            if (GetUserById(userUpdate.UserId) == null)
                 throw new ArgumentException($"User with ID {userUpdate.UserId} not found.");
-            }
-
             _logger.LogInformation("Updating existing user with ID: {UserId}", userUpdate.UserId);
             return _authRepository.UpdateUser(new User()
             {

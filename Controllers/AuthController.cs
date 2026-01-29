@@ -21,7 +21,6 @@ public class AuthController : ControllerBase
             if (result == null) return BadRequest("帳號登入錯誤");
             return Ok(result);
         }
-
         catch (Exception ex)
         {
             return StatusCode(500, "Internal server error: " + ex.Message);

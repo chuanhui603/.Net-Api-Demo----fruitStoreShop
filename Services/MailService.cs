@@ -8,9 +8,12 @@ namespace 水水水果API.Services
     public class MailService : IMailHelper
     {
         private readonly MailModel _mailSetting;
-        public MailService(IOptions<MailModel> model)
+        private readonly Func<ISmtpClient> _smtpClientFactory;
+
+        public MailService(IOptions<MailModel> model, Func<ISmtpClient> smtpClientFactory = null)
         {
             _mailSetting = model.Value;
+            _smtpClientFactory = smtpClientFactory ?? (() => new SmtpClient());
         }
 
         public async Task SendEmailiAsync(MailRequestDTO mailRequest)
@@ -42,7 +45,7 @@ namespace 水水水果API.Services
             email.Body = builder.ToMessageBody();
             //=============================================================
             //smtp的寄送方式(使用appsetting.json的資訊)
-            using var smtp = new SmtpClient();
+            using var smtp = _smtpClientFactory();
             smtp.Connect(_mailSetting.Host, int.Parse(_mailSetting.Port), SecureSocketOptions.StartTls);
             smtp.Authenticate(_mailSetting.Mail, _mailSetting.Password);
             await smtp.SendAsync(email);

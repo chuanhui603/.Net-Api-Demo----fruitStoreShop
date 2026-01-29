@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using 水水水果API.Models.DTO;
 
 namespace 水水水果.Controllers
 {
@@ -63,12 +62,12 @@ namespace 水水水果.Controllers
         [HttpPost("resgister")]
         public IActionResult MemberPost([FromBody] CouponDTO couponDTO)
         {
-            _logger.LogInformation("Code: {0}", couponDTO.Code);
+            _logger.LogInformation("Code: {Code}", couponDTO.Code);
             try
             {
                 var result = _couponRepository.GetCouponByCode(couponDTO.Code, couponDTO.Id!.Value);
                 if (result == null) return StatusCode(200, new { message = "No Code" });
-                _logger.LogInformation("result: {0}", result);
+                _logger.LogInformation("result: {result}", result);
                 _couponService.RegisterMemberCode(couponDTO.Code, couponDTO.Id.Value);
                 return Created();
             }

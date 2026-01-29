@@ -33,13 +33,17 @@ namespace 水水水果API.Services
         public void UpdateMember(MemberUpdate memberUpdate)
         {
             var strategy = _crmContext.Database.CreateExecutionStrategy();
+            var useTransaction = _crmContext.Database.IsRelational() && _authContext.Database.IsRelational();
 
             strategy.Execute(() =>
             {
                 try
                 {
-                    _crmContext.Database.BeginTransaction();
-                    _authContext.Database.BeginTransaction();
+                    if (useTransaction)
+                    {
+                        _crmContext.Database.BeginTransaction();
+                        _authContext.Database.BeginTransaction();
+                    }
                     User updateUser = _authRepository.GetUserByEmail(memberUpdate.Email);
                     Member member = _memberRepository.GetMembersByUser(updateUser.Id);
 
@@ -67,13 +71,19 @@ namespace 水水水果API.Services
                         UserId = memberUpdate.UserId?? member.UserId,
                     });
 
-                    _crmContext.Database.CommitTransaction();
-                    _authContext.Database.CommitTransaction();
+                    if (useTransaction)
+                    {
+                        _crmContext.Database.CommitTransaction();
+                        _authContext.Database.CommitTransaction();
+                    }
                 }
                 catch (Exception ex)
                 {
-                    _crmContext.Database.RollbackTransaction();
-                    _authContext.Database.RollbackTransaction();
+                    if (useTransaction)
+                    {
+                        _crmContext.Database.RollbackTransaction();
+                        _authContext.Database.RollbackTransaction();
+                    }
                     _logger.LogError(ex, "會員修改失敗， Rollback");
                     throw;
                 }
@@ -84,13 +94,17 @@ namespace 水水水果API.Services
         {
             int memberId = 0;
             var strategy = _crmContext.Database.CreateExecutionStrategy();
+            var useTransaction = _crmContext.Database.IsRelational() && _authContext.Database.IsRelational();
 
             strategy.Execute(() =>
             {
                 try
                 {
-                    _crmContext.Database.BeginTransaction();
-                    _authContext.Database.BeginTransaction();
+                    if (useTransaction)
+                    {
+                        _crmContext.Database.BeginTransaction();
+                        _authContext.Database.BeginTransaction();
+                    }
 
                     int customerId = ResolveCustomerId(memberCreate);
                     int userId = ResolveUserId(memberCreate);
@@ -106,14 +120,20 @@ namespace 水水水果API.Services
                         IsActive = true,
                     });
 
-                    _crmContext.Database.CommitTransaction();
-                    _authContext.Database.CommitTransaction();
+                    if (useTransaction)
+                    {
+                        _crmContext.Database.CommitTransaction();
+                        _authContext.Database.CommitTransaction();
+                    }
                     _logger.LogInformation("會員註冊完成，MemberId: {MemberId}, CustomerId: {CustomerId}, UserId: {UserId}", memberId, customerId, userId);
                 }
                 catch (Exception)
                 {
-                    _crmContext.Database.RollbackTransaction();
-                    _authContext.Database.RollbackTransaction();
+                    if (useTransaction)
+                    {
+                        _crmContext.Database.RollbackTransaction();
+                        _authContext.Database.RollbackTransaction();
+                    }
                     throw;
                 }
 
@@ -127,7 +147,6 @@ namespace 水水水果API.Services
                 Phone = memberCreate.Phone,
                 Address = memberCreate.Address,
             };
-
         }
 
         private int ResolveCustomerId(MemberCreate memberCreate)

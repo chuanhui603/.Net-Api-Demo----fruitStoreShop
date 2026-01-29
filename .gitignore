@@ -9,6 +9,9 @@
 /logs
 /*/obj
 /*/bin
+# 忽略測試專案的輸出
+/Tests/**/bin/
+/Tests/**/Debug/
 # 忽略特定的 Markdown 文件
 commit-message-instructions.md
 
